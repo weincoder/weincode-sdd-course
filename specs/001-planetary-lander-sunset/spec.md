@@ -2,7 +2,7 @@
 
 **Feature Branch**: `001-planetary-lander-sunset`  
 **Created**: 2026-10-17  
-**Status**: Cerrada — lista para planificación (2026-10-17)  
+**Status**: Cerrada — lista para planificación (2026-10-17; actualizada a 3D 2026-10-18)  
 **Input**: User description: "4 mundos iniciales (Tierra, Marte, Luna, Titán). El usuario selecciona un mundo, inicia a cierta altitud cayendo hacia la superficie y tiene propulsores con combustible limitado para frenar. Si aterriza suave (por debajo de la velocidad límite) gana y aparece el control 'Hora Solar' para mover el sol hacia el horizonte y ver el color del cielo propio de ese mundo (atardecer naranja en la Tierra, azul frío en Marte, corte negro sin atmósfera en la Luna, bruma densa ámbar en Titán). Si choca fuerte o se queda sin combustible y cae rápido, la sonda se destruye y no puede ver el anochecer hasta que reintente y aterrice. Sin decidir: umbrales de velocidad segura, salida por arriba de la pantalla, viento lateral, reinicio y presentación de métricas en la cabina morada de Weincode."
 
 ## Clarifications
@@ -13,6 +13,10 @@
 - Q: ¿Umbral de aterrizaje seguro? → A: Velocidad vertical ≤ 2,0 m/s, único para los cuatro mundos (tolerancia de la sonda).
 - Q: ¿Qué ocurre si la sonda sale por arriba? → A: Techo de altitud de 1,5 × la altitud inicial; superarlo es "Misión fallida – señal perdida".
 - Q: ¿La simulación corre en tiempo real o acelerado? → A: Tiempo acelerado por mundo para que todos los descensos duren parecido (solo se acelera la reproducción; las ecuaciones y constantes no cambian).
+
+### Session 2026-10-18
+
+- Q: ¿Experiencia 2D o 3D? → A: 3D desde v1 (enmienda constitucional v1.1.0). La física sigue siendo solo vertical; el cambio afecta a escena, cámara, iluminación y cielo.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -142,8 +146,15 @@ Durante todo el descenso el usuario ve una cabina (HUD) con los colores de Weinc
 
 - **FR-019**: Durante el descenso, la cabina MUST mostrar en tiempo real: altitud sobre la superficie, velocidad vertical, combustible restante (en porcentaje), mundo actual, su gravedad, el umbral seguro (2,0 m/s) y el techo de altitud, con aviso cuando la sonda se acerque a él.
 - **FR-020**: La cabina MUST indicar visualmente si la velocidad vertical actual está por encima o por debajo del umbral seguro.
-- **FR-021**: Toda la interfaz de cabina, controles, selectores y telemetría MUST usar exclusivamente la paleta Weincode (#18084D, #5236FF, #A599FF, #FFFFFF), y esa paleta MUST NOT teñir el cielo ni el terreno simulado.
+- **FR-021**: Toda la interfaz de cabina, controles, selectores y telemetría MUST usar exclusivamente la paleta Weincode (#18084D, #5236FF, #A599FF, #FFFFFF), y esa paleta MUST NOT teñir ningún elemento de la escena 3D (cielo, terreno, sonda ni iluminación).
 - **FR-022**: El usuario MUST poder controlar el propulsor tanto con teclado como con un control táctil/clic en pantalla.
+
+**Escena 3D y cámara**
+
+- **FR-027**: El descenso MUST mostrarse en una escena 3D con cámara en tercera persona que sigue a la sonda manteniendo visibles la sonda y la superficie, de modo que la altitud se perciba también visualmente.
+- **FR-028**: Cada mundo MUST mostrar un entorno 3D característico alrededor de una zona de aterrizaje plana (Tierra: terreno con vegetación/rocas; Marte: regolito rojizo y rocas; Luna: regolito gris con cráteres; Titán: terreno helado bajo bruma).
+- **FR-029**: Tras un aterrizaje exitoso, la cámara MUST pasar a una vista hacia el horizonte donde se pone el sol, y el usuario MUST poder girar la vista horizontalmente alrededor de la sonda mientras usa Hora Solar.
+- **FR-030**: La posición del sol en Hora Solar MUST controlar también la dirección de la luz de la escena: sombras e iluminación de terreno y sonda cambian con ella (en la Luna, sombras duras y sin luz ambiental de cielo; en Titán, luz difusa y sombras suaves).
 
 **Autonomía**
 
@@ -178,14 +189,17 @@ Durante todo el descenso el usuario ve una cabina (HUD) con los colores de Weinc
 - **SC-007**: La telemetría refleja el estado de la sonda sin retraso perceptible: el usuario ve el efecto de activar el propulsor en la velocidad mostrada en menos de 0,1 s.
 - **SC-008**: Reintentar devuelve al usuario a un nuevo descenso en menos de 2 segundos.
 - **SC-009**: El ciclo completo funciona con la red desconectada tras la apertura inicial.
+- **SC-010**: La escena 3D se percibe fluida (al menos 30 imágenes por segundo) durante el descenso y Hora Solar en un portátil y un móvil de gama media actuales.
+- **SC-011**: Desde que se elige un mundo, la escena 3D está lista para iniciar el descenso en menos de 5 segundos.
 
 ## Assumptions
 
-- **Plataforma**: experiencia 2D de una sola pantalla en navegador de escritorio y móvil; el propulsor se controla con una tecla (p. ej. barra espaciadora/flecha arriba) o manteniendo pulsado un botón en pantalla.
+- **Plataforma**: experiencia 3D de una sola pantalla en navegador de escritorio y móvil; la física se mantiene unidimensional (vertical) y el 3D afecta solo a la presentación; el propulsor se controla con una tecla (p. ej. barra espaciadora/flecha arriba) o manteniendo pulsado un botón en pantalla.
 - **Condiciones iniciales**: la altitud inicial, la velocidad inicial y el combustible inicial son parámetros de partida del escenario (no constantes físicas) y se calibran por mundo para que el aterrizaje sea exigente pero alcanzable (SC-002); la física durante el descenso no se altera para facilitar el juego. El factor de escala temporal (FR-025) es solo de reproducción y se considera compatible con el Principio I porque no modifica ninguna constante ni la trayectoria.
 - **Empuje del propulsor**: el empuje y el consumo son propiedades de la sonda y son iguales en todos los mundos; la diferencia de dificultad proviene solo de la gravedad y la atmósfera reales.
 - **Reinicio**: reintentar no tiene límite ni penalización; no se guarda historial ni puntuaciones entre sesiones en v1.
 - **Progreso**: el desbloqueo de Hora Solar aplica solo al intento exitoso en curso; no se persiste entre sesiones.
-- **Terreno**: la superficie de aterrizaje es plana en v1; no hay obstáculos ni zonas de aterrizaje específicas.
+- **Terreno**: la zona de aterrizaje es plana en v1, sin obstáculos; el relieve característico de cada mundo (FR-028) es decorativo y está fuera de la trayectoria vertical de la sonda.
+- **Cámara**: durante el descenso el usuario no controla la cámara; solo puede girarla tras un aterrizaje exitoso (FR-029).
 - **Idioma**: interfaz en español en v1.
-- **Fuera de alcance v1**: más mundos, movimiento lateral y viento, puntuaciones/rankings, sonido, modos multijugador, rotación/actitud de la sonda.
+- **Fuera de alcance v1**: más mundos, movimiento lateral y viento, puntuaciones/rankings, sonido, modos multijugador, rotación/actitud de la sonda, cámara libre durante el descenso, realidad virtual.

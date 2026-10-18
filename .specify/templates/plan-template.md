@@ -35,7 +35,7 @@
 - [ ] **Principio II — Consecuencia del Impacto y Recompensa Crepuscular [NO NEGOCIABLE]**: Umbrales de velocidad vertical/horizontal verificables que declaran misión fallida y bloquean el evento de anochecer en caso de exceso.
 - [ ] **Principio III — Identidad Cromática Weincode en Cabina y Telemetría**: HUD y controles restringidos a `#18084D`, `#5236FF`, `#A599FF` y `#FFFFFF`, sin contaminar el lienzo de simulación atmosférica.
 - [ ] **Principio IV — Autonomía en Cliente y Cero Dependencia Externa**: Ejecución 100% en cliente sin cuentas, bases de datos remotas ni llamadas de red en tiempo de ejecución.
-- [ ] **Restricciones del Producto**: Simulador 2D sobre el stack declarado del repositorio y cinemática estándar resuelta en el ciclo nativo sin librerías físicas externas.
+- [ ] **Restricciones del Producto**: Simulador 3D sobre el stack declarado del repositorio; cinemática estándar resuelta en el ciclo nativo sin librerías físicas externas; como máximo una librería de renderizado 3D empaquetada localmente.
 
 ## Project Structure
 

@@ -1,5 +1,5 @@
 ---
-description: Guía práctica para implementar Arquitectura Limpia en Angular con standalone components y nueva sintaxis de control de flujo.
+description: Guía práctica para implementar Arquitectura Limpia en Angularcon standalone components y nueva sintaxis de control de flujo.
 applyTo: '**/*.ts, **/*.js'
 ---
 

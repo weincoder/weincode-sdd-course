@@ -1,505 +1,280 @@
 ---
-description: Guía práctica para implementar Arquitectura Limpia en Angularcon standalone components y nueva sintaxis de control de flujo.
-applyTo: '**/*.ts, **/*.js'
+description: Instrucciones para generar código Angular (standalone, signals, control de flujo nativo) siguiendo Clean Architecture y SOLID.
+applyTo: '**/*.ts,**/*.html,**/*.scss'
 ---
 
-🏗️ Guía de Arquitectura Limpia en Angular 17+
-Índice
-Principios Fundamentales
-Estructura de Carpetas
-Capa de Dominio
-Capa de Infraestructura
-Capa de UI (Presentación)
-Capa de Configuración
-Inversión de Dependencias
-Paso a Paso: Agregar una Nueva Entidad
-Buenas Prácticas
-Anti-patrones a Evitar
-1. Principios Fundamentales
-La Arquitectura Limpia (Clean Architecture) se basa en los principios SOLID y busca separar las responsabilidades del software en capas independientes.
+# 🤖 LLM INSTRUCTIONS: ANGULAR CLEAN ARCHITECTURE
 
-Regla de Dependencia
-Las dependencias siempre apuntan hacia adentro. Las capas externas conocen a las internas, pero NUNCA al revés.
+## 🌍 CONTEXTO DEL SISTEMA
 
-┌─────────────────────────────────────────────────────┐
-│                     UI / Presentación                │  ← Capa más externa
-│  ┌─────────────────────────────────────────────────┐│
-│  │              Infraestructura                     ││
-│  │  ┌─────────────────────────────────────────────┐││
-│  │  │              Dominio (Núcleo)               │││  ← Capa más interna
-│  │  │  • Modelos/Entidades                        │││
-│  │  │  • Gateways (abstracciones)                 │││
-│  │  │  • Casos de Uso                             │││
-│  │  └─────────────────────────────────────────────┘││
-│  └─────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────┘
-Principios Clave
-Principio	Descripción
-Independencia del Framework	El dominio no conoce Angular, ni HttpClient, ni ninguna librería externa
-Testeable	La lógica de negocio se puede probar sin UI, base de datos, ni servidor
-Independencia de la UI	La UI puede cambiar sin modificar el resto del sistema
-Independencia de la base de datos/API	Se puede cambiar la fuente de datos sin afectar la lógica de negocio
-Inversión de Dependencias	Las capas de alto nivel no dependen de las de bajo nivel; ambas dependen de abstracciones
-2. Estructura de Carpetas
-src/
-├── app/
-│   ├── config/                          # ⚙️ Configuración de la aplicación
-│   │   ├── app.config.ts                # Providers, inyección de dependencias
-│   │   └── app.routes.ts                # Definición de rutas
-│   │
-│   ├── domain/                          # 🧠 NÚCLEO - Lógica de Negocio Pura
-│   │   ├── models/                      # Entidades del dominio
-│   │   │   └── [Entidad]/
-│   │   │       ├── entidad.ts           # Modelo de datos
-│   │   │       └── gateway/
-│   │   │           └── entidad-gateway.ts  # Contrato abstracto (puerto)
-│   │   └── usecase/                     # Casos de uso
-│   │       └── get-entidad-use-case.ts
-│   │
-│   ├── infraestructure/                 # 🔌 Implementaciones Concretas
-│   │   ├── driven-adapter/              # Adaptadores (implementan los gateways)
-│   │   │   └── entidad-api/
-│   │   │       ├── entidad-api.service.ts
-│   │   │       └── entidad-api.service.spec.ts
-│   │   └── helpers/                     # Utilidades de infraestructura
-│   │       └── maps/                    # Mappers de datos
-│   │           ├── common/
-│   │           │   └── maps.ts          # Mapper abstracto genérico
-│   │           └── entidad_mapper.ts
-│   │
-│   └── UI/                              # 🎨 Capa de Presentación
-│       ├── ds/                          # Design System
-│       │   └── atoms/                   # Componentes atómicos reutilizables
-│       │       └── [componente]/
-│       ├── main/                        # Componente raíz
-│       │   └── main.component.ts
-│       └── pages/                       # Páginas/Vistas
-│           └── [página]/
-│               └── página.component.ts
-│
-├── assets/                              # Recursos estáticos
-├── index.html
-├── main.ts
-└── styles.scss
-3. Capa de Dominio
-La capa de dominio es el corazón de la aplicación. No debe tener NINGUNA dependencia con frameworks externos (Angular, RxJS es aceptable por ser la base reactiva).
+Actúa como Tech Lead y Senior Angular Developer. Genera código respetando estrictamente Clean Architecture y SOLID. No te saltes capas ni mezcles responsabilidades. Usa siempre las APIs actuales y recomendadas de la versión de Angular instalada en el repositorio (consulta `package.json`); nunca uses APIs obsoletas.
 
-3.1 Modelo (Entidad)
-El modelo representa la estructura de datos pura del dominio.
+## 🛑 REGLAS GLOBALES ABSOLUTAS
 
-// domain/models/Album/album.ts
+1. **REGLA DE DEPENDENCIAS:** `UI` e `infraestructure` dependen de `domain`. `domain` NO depende de nadie (ni Angular, ni `HttpClient`, ni librerías externas). Única excepción permitida: `rxjs` para tipos reactivos.
+2. **CERO ALUCINACIONES DE PAQUETES:** No añadas dependencias npm salvo petición explícita. Si una librería es necesaria, propónla y espera confirmación.
+3. **INVERSIÓN DE DEPENDENCIAS:** La UI inyecta casos de uso; los casos de uso inyectan gateways abstractos; la unión gateway → adaptador se hace SOLO en `config/app.config.ts`.
+4. **INYECCIÓN:** Usa `inject()` en campos de clase. No instancies con `new` servicios, adaptadores ni casos de uso.
+5. **IDIOMA:** Código (clases, métodos, variables, archivos) en inglés. Textos visibles en la UI en español.
+6. **RESTRICCIONES DEL PROYECTO:** Si existe `.specify/memory/constitution.md`, sus reglas prevalecen sobre este archivo (p. ej. prohibición de llamadas de red en tiempo de ejecución → usa adaptadores locales, no HTTP).
 
-export class Album {
-    userId!  : number;
-    id!      : number;
-    title!   : string;
+## 🧱 ESTÁNDARES DE ANGULAR MODERNO (OBLIGATORIOS)
+
+| Usa siempre | Nunca uses |
+|-------------|------------|
+| Componentes standalone (sin `NgModule`) | `NgModule` para features nuevas |
+| `inject()` | Inyección por constructor en código nuevo |
+| `signal()`, `computed()`, `input()`, `output()`, `model()` | `@Input()` / `@Output()` decoradores en código nuevo |
+| Control de flujo `@if`, `@for` (con `track`), `@switch`, `@defer` | `*ngIf`, `*ngFor`, `*ngSwitch` |
+| `ChangeDetectionStrategy.OnPush` | Detección de cambios por defecto |
+| `toSignal()` o `async` pipe para consumir `Observable` | `subscribe()` manual en componentes |
+| `takeUntilDestroyed()` si un `subscribe()` es inevitable | Suscripciones sin liberar |
+| `ApplicationConfig` + `provideRouter` + `provideHttpClient(withFetch())` | Configuración basada en módulos |
+| Tipos estrictos (`string`, `number`, `unknown`) | `any`, `String`, `Number` |
+| Rutas con `loadComponent` (lazy) | Importar todas las páginas en la raíz |
+
+## 📁 ESTRUCTURA DE DIRECTORIOS ESTRICTA
+
+```text
+src/app/
+├── config/
+│   ├── app.config.ts              # Providers e inversión de dependencias
+│   └── app.routes.ts              # Rutas (lazy con loadComponent)
+├── domain/                        # 🧠 Lógica de negocio pura (sin Angular)
+│   ├── models/<entity>/
+│   │   ├── <entity>.ts            # Modelo / entidad
+│   │   └── gateway/<entity>-gateway.ts   # Contrato abstracto (puerto)
+│   └── usecase/<action>-<entity>.use-case.ts
+├── infraestructure/               # 🔌 Implementaciones concretas
+│   ├── driven-adapter/<entity>-<source>/<entity>-<source>.adapter.ts
+│   └── helpers/mappers/<entity>.mapper.ts
+└── UI/                            # 🎨 Presentación
+    ├── ds/{atoms,molecules,organisms,templates}/   # Design System (Atomic Design)
+    ├── main/main.component.ts     # Componente raíz
+    └── pages/<page>/<page>.component.ts
+```
+
+Mantén estos nombres de carpeta tal cual (incluido `infraestructure`), aunque parezcan erratas: son la convención del proyecto.
+
+## 🧩 PLANTILLAS POR CAPA
+
+### 1. Modelo (domain)
+
+```typescript
+// domain/models/album/album.ts
+export interface Album {
+  readonly id: number;
+  readonly userId: number;
+  readonly title: string;
 }
-Reglas: - ✅ Solo propiedades y métodos propios del dominio - ✅ Puede tener validaciones internas - ❌ NO decoradores de Angular (@Injectable, @Component, etc.) - ❌ NO dependencias de infraestructura
+```
 
-3.2 Gateway (Puerto / Contrato Abstracto)
-El gateway define el contrato que cualquier implementación debe cumplir. Es una clase abstracta que actúa como interfaz inyectable.
+- ✅ Solo datos y reglas propias del dominio (validaciones, invariantes, cálculos puros).
+- ❌ Sin decoradores de Angular ni imports de infraestructura.
 
-// domain/models/Album/gateway/album-gateway.ts
+### 2. Gateway / Puerto (domain)
 
+```typescript
+// domain/models/album/gateway/album-gateway.ts
 import { Observable } from 'rxjs';
 import { Album } from '../album';
 
 export abstract class AlbumGateway {
-    abstract getByID(id: String): Observable<Album>;
-    abstract getAll(): Observable<Array<Album>>;
-    abstract saveNew(_alb: Album): Observable<void>;
+  abstract getById(id: number): Observable<Album>;
+  abstract getAll(): Observable<Album[]>;
+  abstract save(album: Album): Observable<void>;
 }
-¿Por qué clase abstracta y no interfaz?
+```
 
-En Angular, las interfaces no pueden usarse como tokens de inyección de dependencias. Las clases abstractas sí, lo que permite usar el sistema DI de Angular para resolver implementaciones en tiempo de ejecución.
+- ✅ Usa `abstract class`, no `interface`: Angular no puede usar interfaces como token de DI.
+- ✅ Solo firmas abstractas con tipos del dominio. Operaciones asíncronas → `Observable<T>`.
+- ❌ No menciona HTTP, `localStorage` ni ninguna tecnología concreta.
 
-Reglas: - ✅ Define TODOS los métodos que la infraestructura debe implementar - ✅ Usa tipos del dominio (Album, no any) - ✅ Retorna Observable<T> para operaciones asíncronas - ❌ NO tiene implementación (solo firmas abstractas) - ❌ NO conoce HttpClient, localStorage, ni ninguna tecnología concreta
+### 3. Caso de uso (domain)
 
-3.3 Caso de Uso (Use Case)
-Los casos de uso encapsulan la lógica de negocio específica de una operación.
-
-// domain/usecase/get-album-use-case.ts
-
-import { Injectable } from '@angular/core';
+```typescript
+// domain/usecase/get-album.use-case.ts
+import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Album } from '../models/Album/album';
-import { AlbumGateway } from '../models/Album/gateway/album-gateway';
+import { Album } from '../models/album/album';
+import { AlbumGateway } from '../models/album/gateway/album-gateway';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class GetAlbumUseCases {
-  constructor(private _albumGateWay: AlbumGateway) {}
+@Injectable({ providedIn: 'root' })
+export class GetAlbumUseCase {
+  private readonly albumGateway = inject(AlbumGateway);
 
-  getAlbumById(id: String): Observable<Album> {
-    return this._albumGateWay.getByID(id);
-  }
-
-  getAllAlbum(): Observable<Array<Album>> {
-    return this._albumGateWay.getAll();
-  }
-}
-Reglas: - ✅ Inyecta el Gateway abstracto, NUNCA la implementación concreta - ✅ Contiene lógica de negocio (transformaciones, validaciones, combinaciones) - ✅ Cada caso de uso debe tener una responsabilidad clara - ❌ NO accede directamente a APIs, DB, o servicios externos - ❌ NO conoce la UI
-
-4. Capa de Infraestructura
-La infraestructura contiene las implementaciones concretas de los contratos definidos en el dominio.
-
-4.1 Driven Adapter (Adaptador)
-El adaptador implementa el gateway usando una tecnología concreta (HTTP, WebSocket, localStorage, etc.).
-
-// infraestructure/driven-adapter/album-api/album-api.service.ts
-
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { AlbumGateway } from '../../../domain/models/Album/gateway/album-gateway';
-import { Album } from '../../../domain/models/Album/album';
-import { Observable, delay } from 'rxjs';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class AlbumApiService extends AlbumGateway {
-  private _url = 'https://jsonplaceholder.typicode.com/albums/';
-
-  constructor(private http: HttpClient) { super(); }
-
-  getByID(id: String): Observable<Album> {
-    return this.http.get<Album>(this._url + id).pipe(delay(3000));
+  getById(id: number): Observable<Album> {
+    return this.albumGateway.getById(id);
   }
 
   getAll(): Observable<Album[]> {
-    return this.http.get<Array<Album>>(this._url);
-  }
-
-  saveNew(_alb: Album): Observable<void> {
-    throw new Error('Method not implemented.');
+    return this.albumGateway.getAll();
   }
 }
-Se pueden tener múltiples implementaciones del mismo gateway:
+```
 
-// album-api-without-delay.service.ts - Implementación alternativa SIN delay
+- ✅ Inyecta SOLO gateways abstractos. Una responsabilidad por caso de uso.
+- ✅ Aquí viven transformaciones, validaciones y combinaciones de negocio.
+- ℹ️ `@Injectable` e `inject` son la única concesión al framework en `domain`, necesaria para la DI.
 
-export class AlbumApiServiceWithoutDelay extends AlbumGateway {
-  // Misma implementación pero sin delay(3000)
+### 4. Adaptador (infraestructure)
+
+```typescript
+// infraestructure/driven-adapter/album-api/album-api.adapter.ts
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable, map } from 'rxjs';
+import { AlbumGateway } from '../../../domain/models/album/gateway/album-gateway';
+import { Album } from '../../../domain/models/album/album';
+import { AlbumMapper } from '../../helpers/mappers/album.mapper';
+
+@Injectable({ providedIn: 'root' })
+export class AlbumApiAdapter extends AlbumGateway {
+  private readonly http = inject(HttpClient);
+  private readonly url = 'https://example.com/albums';
+
+  getById(id: number): Observable<Album> {
+    return this.http.get<unknown>(`${this.url}/${id}`).pipe(map(AlbumMapper.fromApi));
+  }
+
+  getAll(): Observable<Album[]> {
+    return this.http.get<unknown[]>(this.url).pipe(map((items) => items.map(AlbumMapper.fromApi)));
+  }
+
+  save(album: Album): Observable<void> {
+    return this.http.post<void>(this.url, album);
+  }
 }
-Reglas: - ✅ Extiende (extends) el gateway abstracto del dominio - ✅ Implementa TODOS los métodos abstractos - ✅ Aquí sí se usa HttpClient, localStorage, WebSocket, etc. - ✅ Puede tener lógica de mapeo de datos (API → Dominio) - ❌ NO contiene lógica de negocio
+```
 
-4.2 Helpers / Mappers
-Los mappers transforman datos externos (API responses) al formato del dominio.
+- ✅ `extends` el gateway e implementa TODOS sus métodos (nunca `throw new Error('Method not implemented.')`).
+- ✅ Puede haber varias implementaciones del mismo gateway (API, local, mock, caché).
+- ❌ Sin lógica de negocio: solo acceso a datos y mapeo.
 
-// infraestructure/helpers/maps/common/maps.ts
+### 5. Mapper (infraestructure)
 
-export abstract class Mapper<I> {
-    abstract fromMap(obj: any): I;
-}
-// infraestructure/helpers/maps/album_mapper.ts
-// Implementar el mapper concreto para la entidad
+```typescript
+// infraestructure/helpers/mappers/album.mapper.ts
+import { Album } from '../../../domain/models/album/album';
 
-import { Mapper } from './common/maps';
-import { Album } from '../../../domain/models/Album/album';
+export const AlbumMapper = {
+  fromApi(raw: unknown): Album {
+    const obj = raw as Record<string, unknown>;
+    return { id: Number(obj['id']), userId: Number(obj['userId']), title: String(obj['title'] ?? '') };
+  },
+};
+```
 
-export class AlbumMapper extends Mapper<Album> {
-    fromMap(obj: any): Album {
-        const album = new Album();
-        album.id = obj.id;
-        album.userId = obj.userId;
-        album.title = obj.title;
-        return album;
-    }
-}
-5. Capa de UI (Presentación)
-La capa de UI se encarga exclusivamente de la presentación y la interacción con el usuario.
+- ✅ Recibe `unknown` y devuelve un modelo del dominio. Es el único lugar que conoce el formato externo.
 
-5.1 Design System (Componentes Reutilizables)
-Organiza componentes visuales reutilizables usando Atomic Design:
+### 6. Página (UI)
 
-UI/ds/
-├── atoms/          # Componentes básicos (botones, inputs, spinners)
-├── molecules/      # Combinaciones de átomos
-├── organisms/      # Secciones complejas
-└── templates/      # Layouts de página
-// UI/ds/atoms/circular-progress/circular-progress.component.ts
-
-@Component({
-  selector: 'app-circular-progress',
-  standalone: true,
-  imports: [],
-  templateUrl: './circular-progress.component.html',
-  styleUrl: './circular-progress.component.scss'
-})
-export class CircularProgressComponent { }
-5.2 Pages (Páginas)
-Las páginas son componentes que representan vistas completas. Inyectan Casos de Uso, NUNCA servicios de infraestructura directamente.
-
+```typescript
 // UI/pages/album/album.component.ts
-
-import { Component, OnInit } from '@angular/core';
-import { GetAlbumUseCases } from '../../../domain/usecase/get-album-use-case';
-import { Album } from '../../../domain/models/Album/album';
-import { Observable } from 'rxjs';
+import { ChangeDetectionStrategy, Component, inject, input } from '@angular/core';
+import { toSignal, toObservable } from '@angular/core/rxjs-interop';
+import { switchMap } from 'rxjs';
+import { GetAlbumUseCase } from '../../../domain/usecase/get-album.use-case';
+import { CircularProgressComponent } from '../../ds/atoms/circular-progress/circular-progress.component';
 
 @Component({
   selector: 'app-album',
-  standalone: true,
   imports: [CircularProgressComponent],
-  templateUrl: './album.component.html',
-  styleUrl: './album.component.scss'
-})
-export class AlbumComponent implements OnInit {
-  constructor(private _getAlbumUseCase: GetAlbumUseCases) { }
-
-  response$: Observable<Album> | undefined;
-  datos?: Album;
-
-  ngOnInit(): void {
-    this.response$ = this._getAlbumUseCase.getAlbumById('20');
-    this.response$.subscribe(
-      (data: Album) => {
-        this.datos = data;
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <section class="card">
+      <h1>Álbum</h1>
+      @if (album(); as album) {
+        <h3>{{ album.title }}</h3>
+      } @else {
+        <app-circular-progress />
       }
-    );
-  }
-}
-<!-- UI/pages/album/album.component.html -->
-<div class="tarjeta">
-    <h1>Titulo Album :</h1>
-    @if (!datos?.title) {
-        <app-circular-progress></app-circular-progress>
-    }
-    <h3>{{datos?.title}}</h3>
-</div>
-Reglas: - ✅ Inyecta Casos de Uso del dominio - ✅ Usa componentes del Design System - ✅ Usa la nueva sintaxis de control de flujo de Angular 17+ (@if, @for) - ❌ NO inyecta servicios de infraestructura directamente - ❌ NO contiene lógica de negocio
-
-5.3 Main Component (Raíz)
-// UI/main/main.component.ts
-
-@Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, AlbumComponent],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+    </section>
+  `,
 })
-export class MainComponent { }
-6. Capa de Configuración
-Aquí se conectan todas las piezas mediante la Inversión de Dependencias.
+export class AlbumComponent {
+  private readonly getAlbum = inject(GetAlbumUseCase);
 
-6.1 App Config (Inyección de Dependencias)
+  readonly albumId = input.required<number>();
+  readonly album = toSignal(toObservable(this.albumId).pipe(switchMap((id) => this.getAlbum.getById(id))));
+}
+```
+
+- ✅ Inyecta casos de uso, NUNCA adaptadores. Estado con signals; plantillas con `@if` / `@for (...; track ...)`.
+- ✅ Los componentes del Design System son presentacionales: reciben `input()` y emiten `output()`, sin inyectar casos de uso.
+- ❌ Sin lógica de negocio ni mapeo de datos en componentes.
+
+### 7. Configuración (config)
+
+```typescript
 // config/app.config.ts
-
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
-import { AlbumGateway } from '../domain/models/Album/gateway/album-gateway';
-import { AlbumApiService } from '../infraestructure/driven-adapter/album-api/album-api.service';
+import { AlbumGateway } from '../domain/models/album/gateway/album-gateway';
+import { AlbumApiAdapter } from '../infraestructure/driven-adapter/album-api/album-api.adapter';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(routes),
+    provideRouter(routes, withComponentInputBinding()),
     provideHttpClient(withFetch()),
-    // 🔑 AQUÍ se conecta la abstracción con la implementación concreta
-    { provide: AlbumGateway, useClass: AlbumApiService },
-  ]
+    { provide: AlbumGateway, useClass: AlbumApiAdapter }, // 🔑 abstracción → implementación
+  ],
 };
-Este es el punto clave de la inversión de dependencias: - provide: AlbumGateway → La abstracción (token de inyección) - useClass: AlbumApiService → La implementación concreta
+```
 
-Para cambiar la implementación, solo se modifica esta línea:
+Cambiar de fuente de datos = cambiar SOLO la línea `useClass`.
 
-// Cambiar de API con delay a API sin delay:
-{ provide: AlbumGateway, useClass: AlbumApiServiceWithoutDelay },
-7. Inversión de Dependencias
-Flujo de Dependencias
-┌──────────┐     inyecta      ┌──────────────┐     inyecta      ┌──────────────┐
-│   UI     │ ──────────────► │  Use Case    │ ──────────────► │   Gateway    │
-│ (Page)   │                  │              │                  │  (Abstracto) │
-└──────────┘                  └──────────────┘                  └──────┬───────┘
-                                                                       │
-                                                                       │ extends
-                                                                       │
-                                                               ┌───────▼───────┐
-                                                               │   Adapter     │
-                                                               │  (Concreto)   │
-                                                               └───────────────┘
-                                                                       │
-                                                            ┌──────────┼──────────┐
-                                                            │          │          │
-                                                      ┌─────▼──┐ ┌────▼───┐ ┌───▼────┐
-                                                      │HTTP API│ │ Local  │ │ Mock   │
-                                                      │        │ │Storage │ │Service │
-                                                      └────────┘ └────────┘ └────────┘
-Conexión en app.config.ts
-providers: [
-    //  Token Abstracto        →   Implementación Concreta
-    { provide: AlbumGateway,   useClass: AlbumApiService },
-]
-8. Paso a Paso: Agregar una Nueva Entidad
-Ejemplo: Agregar la entidad User a la aplicación.
+## 🔁 FLUJO PARA AÑADIR UNA ENTIDAD NUEVA
 
-Paso 1️⃣ — Crear el Modelo
-mkdir -p src/app/domain/models/User/gateway
-// domain/models/User/user.ts
-export class User {
-    id!: number;
-    name!: string;
-    email!: string;
-    username!: string;
-}
-Paso 2️⃣ — Crear el Gateway (Contrato)
-// domain/models/User/gateway/user-gateway.ts
-import { Observable } from 'rxjs';
-import { User } from '../user';
+Sigue este orden y no saltes pasos:
 
-export abstract class UserGateway {
-    abstract getByID(id: number): Observable<User>;
-    abstract getAll(): Observable<Array<User>>;
-    abstract save(user: User): Observable<User>;
-    abstract delete(id: number): Observable<void>;
-}
-Paso 3️⃣ — Crear el Caso de Uso
-// domain/usecase/get-user-use-case.ts
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../models/User/user';
-import { UserGateway } from '../models/User/gateway/user-gateway';
+1. `domain/models/<entity>/<entity>.ts`: modelo.
+2. `domain/models/<entity>/gateway/<entity>-gateway.ts`: contrato abstracto.
+3. `domain/usecase/<action>-<entity>.use-case.ts`: caso de uso + test con gateway mock.
+4. `infraestructure/helpers/mappers/<entity>.mapper.ts`: mapper.
+5. `infraestructure/driven-adapter/<entity>-<source>/<entity>-<source>.adapter.ts`: adaptador + test.
+6. `config/app.config.ts`: añadir `{ provide: <Entity>Gateway, useClass: <Entity><Source>Adapter }`.
+7. `UI/pages/<page>/`: página que inyecta el caso de uso + ruta lazy en `app.routes.ts`.
 
-@Injectable({ providedIn: 'root' })
-export class GetUserUseCases {
-    constructor(private _userGateway: UserGateway) {}
+## 🏷️ CONVENCIONES DE NOMBRADO
 
-    getUserById(id: number): Observable<User> {
-        return this._userGateway.getByID(id);
-    }
+| Artefacto | Archivo | Clase / símbolo |
+|-----------|---------|-----------------|
+| Modelo | `album.ts` | `Album` |
+| Gateway | `album-gateway.ts` | `AlbumGateway` |
+| Caso de uso | `get-album.use-case.ts` | `GetAlbumUseCase` |
+| Adaptador | `album-api.adapter.ts` | `AlbumApiAdapter` |
+| Mapper | `album.mapper.ts` | `AlbumMapper` |
+| Página / componente | `album.component.ts` | `AlbumComponent` |
 
-    getAllUsers(): Observable<Array<User>> {
-        return this._userGateway.getAll();
-    }
-}
-Paso 4️⃣ — Crear el Adaptador (Infraestructura)
-mkdir -p src/app/infraestructure/driven-adapter/user-api
-// infraestructure/driven-adapter/user-api/user-api.service.ts
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { UserGateway } from '../../../domain/models/User/gateway/user-gateway';
-import { User } from '../../../domain/models/User/user';
+## 🧪 TESTING POR CAPA
 
-@Injectable({ providedIn: 'root' })
-export class UserApiService extends UserGateway {
-    private _url = 'https://jsonplaceholder.typicode.com/users/';
+| Capa | Qué se prueba | Cómo |
+|------|---------------|------|
+| domain | Casos de uso y reglas del modelo | Gateway mock vía `TestBed` provider `{ provide: XGateway, useValue: mock }` |
+| infraestructure | Adaptadores y mappers | `provideHttpClientTesting()` + `HttpTestingController`; mappers con datos crudos |
+| UI | Renderizado e interacción | Caso de uso mock; verificar DOM y signals |
 
-    constructor(private http: HttpClient) { super(); }
+## ❌ ANTI-PATRONES (RECHAZAR SIEMPRE)
 
-    getByID(id: number): Observable<User> {
-        return this.http.get<User>(this._url + id);
-    }
+| Anti-patrón | Corrección |
+|-------------|------------|
+| Componente que inyecta un adaptador | Inyectar el caso de uso |
+| `HttpClient` (o cualquier tecnología) en `domain` | Usar el gateway abstracto |
+| `interface` como gateway inyectable | `abstract class` |
+| Lógica de negocio o mapeo en componentes | Mover a caso de uso o mapper |
+| `subscribe()` manual sin liberar | `toSignal()`, `async` pipe o `takeUntilDestroyed()` |
+| `*ngIf` / `*ngFor` / `NgModule` en código nuevo | `@if` / `@for` / standalone |
+| `any` en firmas públicas | Tipos del dominio o `unknown` + mapper |
+| Caso de uso "dios" con muchas responsabilidades | Dividir por responsabilidad |
 
-    getAll(): Observable<User[]> {
-        return this.http.get<Array<User>>(this._url);
-    }
+## ✅ CHECKLIST ANTES DE ENTREGAR CÓDIGO
 
-    save(user: User): Observable<User> {
-        return this.http.post<User>(this._url, user);
-    }
-
-    delete(id: number): Observable<void> {
-        return this.http.delete<void>(this._url + id);
-    }
-}
-Paso 5️⃣ — Registrar la Inyección de Dependencias
-// config/app.config.ts
-import { UserGateway } from '../domain/models/User/gateway/user-gateway';
-import { UserApiService } from '../infraestructure/driven-adapter/user-api/user-api.service';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes),
-    provideHttpClient(withFetch()),
-    { provide: AlbumGateway, useClass: AlbumApiService },
-    { provide: UserGateway, useClass: UserApiService },  // ← NUEVO
-  ]
-};
-Paso 6️⃣ — Crear la Página (UI)
-mkdir -p src/app/UI/pages/user
-// UI/pages/user/user.component.ts
-import { Component, OnInit } from '@angular/core';
-import { GetUserUseCases } from '../../../domain/usecase/get-user-use-case';
-import { User } from '../../../domain/models/User/user';
-
-@Component({
-  selector: 'app-user',
-  standalone: true,
-  imports: [],
-  template: `
-    <div class="tarjeta">
-      <h1>User</h1>
-      @if (user) {
-        <p>{{ user.name }}</p>
-        <p>{{ user.email }}</p>
-      }
-    </div>
-  `
-})
-export class UserComponent implements OnInit {
-  constructor(private _getUserUseCase: GetUserUseCases) {}
-  user?: User;
-
-  ngOnInit(): void {
-    this._getUserUseCase.getUserById(1).subscribe(
-      (data: User) => this.user = data
-    );
-  }
-}
-9. Buenas Prácticas
-✅ Hacer
-Práctica	Razón
-Un caso de uso por responsabilidad	Principio de Responsabilidad Única
-Usar Observable en gateways	Consistencia reactiva con Angular
-Clases abstractas para gateways	Permite inyección de dependencias en Angular
-Múltiples implementaciones por gateway	Flexibilidad (con/sin delay, mock, cache)
-Standalone components	Estándar Angular 17+
-Nueva sintaxis @if, @for	Control de flujo moderno Angular 17+
-Mappers en infraestructura	Desacopla formato API del modelo de dominio
-Tests unitarios por capa	Cada capa se testea independientemente
-✅ Convenciones de Nombrado
-Modelo:     album.ts              → export class Album
-Gateway:    album-gateway.ts      → export abstract class AlbumGateway
-Use Case:   get-album-use-case.ts → export class GetAlbumUseCases
-Adapter:    album-api.service.ts  → export class AlbumApiService
-Mapper:     album_mapper.ts       → export class AlbumMapper
-Page:       album.component.ts    → export class AlbumComponent
-✅ Testing por Capas
-Dominio:          Mock del gateway → Testea caso de uso
-Infraestructura:  HttpTestingController → Testea adaptador
-UI:               Mock del caso de uso → Testea componente
-10. Anti-patrones a Evitar
-❌ No Hacer
-Anti-patrón	Problema	Solución
-Inyectar AlbumApiService en un componente	Acoplamiento directo a infraestructura	Inyectar GetAlbumUseCases
-Lógica de negocio en componentes	Violación de SRP, difícil de testear	Mover al caso de uso
-HttpClient en un caso de uso	El dominio conoce infraestructura	Usar el gateway abstracto
-Interfaces en vez de clases abstractas para DI	Angular no puede inyectar interfaces	Usar abstract class
-Modelos con decoradores Angular	Acoplamiento del dominio al framework	Modelos puros (POJO/POTS)
-Un solo caso de uso gigante	Violación de SRP	Dividir por responsabilidad
-Lógica de mapeo en componentes	Responsabilidad mal ubicada	Usar Mappers en infraestructura
-Resumen Visual
-                    ┌─────────────────┐
-                    │   app.config.ts │  ← Conecta abstracciones con implementaciones
-                    │   (providers)   │
-                    └────────┬────────┘
-                             │
-           ┌─────────────────┼─────────────────┐
-           │                 │                  │
-    ┌──────▼──────┐   ┌──────▼──────┐   ┌──────▼──────┐
-    │   DOMINIO   │   │  INFRA      │   │     UI      │
-    │             │   │             │   │             │
-    │ • Modelos   │   │ • Adapters  │   │ • Pages     │
-    │ • Gateways  │◄──│   (extends) │   │ • DS        │
-    │ • UseCases  │   │ • Mappers   │   │ • Main      │
-    └─────────────┘   └─────────────┘   └─────────────┘
-          ▲                                    │
-          │          inyecta UseCase            │
-          └────────────────────────────────────┘
-
-    📌 Dirección de dependencia: UI → Dominio ← Infraestructura
-Con standalone components, nueva sintaxis de control de flujo (@if, @for), y configuración funcional (ApplicationConfig + provideRouter + provideHttpClient).
+- [ ] `domain` no importa nada de `infraestructure`, `UI` ni `@angular/common/http`.
+- [ ] Cada gateway nuevo está registrado en `app.config.ts`.
+- [ ] Componentes standalone, `OnPush`, signals y control de flujo nativo.
+- [ ] Sin `any`, sin suscripciones huérfanas, sin dependencias npm no solicitadas.
+- [ ] Tests creados para caso de uso, adaptador y mapper nuevos.
+- [ ] Código en inglés, textos de UI en español.

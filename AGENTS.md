@@ -1,6 +1,9 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
-shell commands, and other important information, read the current plan
+shell commands, and other important information, read the current plan:
+- **Feature**: Descenso Planetario y Hora Solar (WeinSolar v1 — Dual Stack: Angular & Flutter)
+- **Plan**: [specs/001-planetary-lander-sunset/plan.md](specs/001-planetary-lander-sunset/plan.md)
+- **Branch**: `001-planetary-lander-sunset`
 <!-- SPECKIT END -->
 
 ## Constitución

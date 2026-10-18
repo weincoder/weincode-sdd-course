@@ -122,7 +122,7 @@ class [Entity]Api implements [Entity]Gateway {
 <!-- SPECKIT START -->
 ## 📋 Plan de Implementación Activo
 
-**Feature**: Gestión de Amigos y Especialidades  
-**Plan**: [specs/002-amigos-especialidades/plan.md](../../../specs/002-amigos-especialidades/plan.md)  
-**Branch**: `002-amigos-especialidades`
+**Feature**: Descenso Planetario y Hora Solar (WeinSolar v1)  
+**Plan**: [specs/001-planetary-lander-sunset/plan.md](../../specs/001-planetary-lander-sunset/plan.md)  
+**Branch**: `001-planetary-lander-sunset`
 <!-- SPECKIT END -->

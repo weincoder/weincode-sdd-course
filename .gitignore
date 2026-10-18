@@ -1,0 +1,37 @@
+# Universal / OS / IDE
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+*.iml
+
+# Node.js / TypeScript / Angular
+node_modules/
+dist/
+out-tsc/
+.angular/
+coverage/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.env*
+
+# Flutter / Dart
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+**/ios/Flutter/.last_build_id
+**/android/.gradle/
+**/android/local.properties
+**/macos/Flutter/ephemeral/
+**/linux/flutter/ephemeral/
+**/windows/flutter/ephemeral/
+*.lock
+!pubspec.lock
+!package-lock.json

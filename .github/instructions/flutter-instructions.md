@@ -122,7 +122,7 @@ class [Entity]Api implements [Entity]Gateway {
 <!-- SPECKIT START -->
 ## 📋 Plan de Implementación Activo
 
-**Feature**: Descenso Planetario y Hora Solar (WeinSolar v1)  
-**Plan**: [specs/001-planetary-lander-sunset/plan.md](../../specs/001-planetary-lander-sunset/plan.md)  
-**Branch**: `001-planetary-lander-sunset`
+**Feature**: Entorno Tridimensional Realista (WeinSolar v2)  
+**Plan**: [specs/002-realistic-3d-scene/plan.md](../../specs/002-realistic-3d-scene/plan.md)  
+**Branch**: `002-realistic-3d-scene`
 <!-- SPECKIT END -->

@@ -1,0 +1,26 @@
+:root {
+  --weincode-indigo-deep: #18084D;
+  --weincode-electric-violet: #5236FF;
+  --weincode-soft-lavender: #A599FF;
+  --weincode-pure-white: #FFFFFF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--weincode-indigo-deep);
+  color: var(--weincode-pure-white);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}

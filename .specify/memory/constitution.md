@@ -1,25 +1,25 @@
 <!--
 Sync Impact Report
-- Version change: 0.0.0 (template) → 1.0.0
+- Version change: 1.0.0 → 1.1.0 (MINOR: expansión material de Restricciones del Producto;
+  ningún principio se elimina ni se redefine de forma incompatible)
 - Modified principles:
-  - [PRINCIPLE_1_NAME] → I. Fidelidad Astrofísica [NO NEGOCIABLE]
-  - [PRINCIPLE_2_NAME] → II. Consecuencia del Impacto y Recompensa Crepuscular [NO NEGOCIABLE]
-  - [PRINCIPLE_3_NAME] → III. Identidad Cromática Weincode en Cabina y Telemetría
-  - [PRINCIPLE_4_NAME] → IV. Autonomía en Cliente y Cero Dependencia Externa
-- Added sections:
-  - Contexto del Producto (WeinSolar: propósito y audiencia)
-  - Restricciones del Producto ([SECTION_2_NAME])
-  - Flujo de Trabajo y Compuertas de Calidad ([SECTION_3_NAME])
-  - Governance (Tríada de Gobierno, Versionado Semántico y Verificación de Cumplimiento)
-- Removed sections:
-  - [PRINCIPLE_5_NAME] (template slot removed; project establishes 4 Core Principles)
+  - III. Identidad Cromática Weincode en Cabina y Telemetría (aclarado: la paleta no puede
+    teñir la escena 3D — cielo, terreno, iluminación)
+- Modified sections:
+  - Restricciones del Producto: Artefacto Principal 2D → 3D; Dependencias amplía permiso a
+    una librería de renderizado 3D empaquetada localmente (no de física)
+- Added sections: Ninguna
+- Removed sections: Ninguna
+- Motivo: demo más vistosa para la serie de YouTube del curso SDD
 - Templates requiring updates:
-  - ✅ .specify/templates/plan-template.md (Constitution Check updated with Principles I–IV gates)
-  - ✅ .specify/templates/spec-template.md (Reviewed; compatible with functional and planetary acceptance criteria)
-  - ✅ .specify/templates/tasks-template.md (Reviewed; compatible with independent story verification)
-  - ✅ .specify/templates/checklist-template.md (Reviewed; no changes required)
-  - ✅ README.md (Reviewed; aligned with WeinSolar principles and Weincode palette)
-- Follow-up TODOs: None (all placeholders resolved)
+  - ✅ .specify/templates/plan-template.md (gate "Restricciones del Producto" actualizado a 3D)
+  - ✅ .specify/templates/spec-template.md (Reviewed; sin cambios)
+  - ✅ .specify/templates/tasks-template.md (Reviewed; sin cambios)
+  - ✅ .specify/templates/checklist-template.md (Reviewed; sin cambios)
+  - ✅ README.md (Reviewed; sin referencias a 2D)
+  - ✅ specs/001-planetary-lander-sunset/spec.md (alineada a 3D)
+- Follow-up TODOs: Aprobación formal de la tríada de gobierno (PO, Arquitecto Principal,
+  Líder de Negocio) pendiente de registrar
 -->
 
 # WeinSolar Constitution
@@ -68,6 +68,8 @@ sistema solar.
   - Blanco (`#FFFFFF`)
 - Queda estrictamente PROHIBIDO que esta paleta tiña, contamine o altere el lienzo de
   simulación atmosférica del planeta.
+- En la escena 3D, la paleta MUST limitarse a la capa de cabina/HUD y controles; el cielo,
+  el terreno, la sonda y la iluminación de la escena MUST NOT usar ni reflejar estos colores.
 - **Justificación**: Garantiza el reconocimiento visual de la marca Weincode en los
   instrumentos de control mientras preserva intacta la pureza óptica del fenómeno
   crepuscular exigida por el Principio I.
@@ -84,7 +86,7 @@ sistema solar.
 
 ## Restricciones del Producto
 
-- **Artefacto Principal**: Simulador interactivo 2D de física de descenso y renderizado
+- **Artefacto Principal**: Simulador interactivo 3D de física de descenso y renderizado
   óptico crepuscular.
 - **Regla de Cambio Tecnológico**: Se trabaja sobre el stack existente en cada
   repositorio de implementación (declarado en el archivo de contexto del agente);
@@ -93,6 +95,9 @@ sistema solar.
 - **Dependencias**: Queda PROHIBIDO añadir librerías externas para cálculos físicos que
   puedan resolverse con fórmulas cinemáticas estándar dentro del ciclo nativo de
   actualización.
+- **Renderizado 3D**: Se permite una única librería de renderizado 3D (no de física). MUST
+  empaquetarse localmente con la aplicación y MUST NOT cargarse por red en tiempo de
+  ejecución (Principio IV).
 
 ## Flujo de Trabajo y Compuertas de Calidad
 
@@ -121,4 +126,4 @@ sistema solar.
   auditar explícitamente cada especificación (`pre-spec.md`, `spec.md`), plan y Pull
   Request contra los Principios I al IV antes de autorizar cualquier fusión.
 
-**Version**: 1.0.0 | **Ratified**: 2026-10-17 | **Last Amended**: 2026-10-17
+**Version**: 1.1.0 | **Ratified**: 2026-10-17 | **Last Amended**: 2026-10-18

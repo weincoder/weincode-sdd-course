@@ -11,6 +11,13 @@ La v1 (`specs/001-planetary-lander-sunset/spec.md`) define el comportamiento com
 
 Esta v2 es un **cambio exclusivamente de presentación**: eleva la escena a volumen, perspectiva, iluminación y sombras realistas. Toda ley física, constante planetaria, umbral, regla de mérito y flujo de pantallas de la v1 se hereda **sin modificación**. Cualquier requisito de esta spec que entre en conflicto con la v1 o con la constitución se resuelve a favor de estas últimas.
 
+## Clarifications
+
+### Session 2026-10-19
+
+- Q: ¿Comportamiento de la cámara? → A: Mixta: durante el descenso, cámara que sigue a la sonda desde un ángulo lateral fijo, sin control del usuario; tras un aterrizaje exitoso, en Hora Solar el usuario puede girar la vista 360° alrededor de la nave.
+- Q: ¿La nave puede volcar en el borde de un cráter o la plataforma es siempre plana? → A: Plataforma siempre plana; el relieve y los cráteres son decorativos y quedan fuera de la trayectoria de la sonda. No hay vuelco ni nueva causa de fallo.
+- Q: ¿Qué ocurre en dispositivos sin capacidad para la calidad visual completa? → A: El usuario elige manualmente en la cabina entre calidad «Alta» y «Básica»; no hay ajuste automático.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -54,16 +61,19 @@ Tras un aterrizaje exitoso, el usuario mueve el control Hora Solar. Conforme el 
 
 ### User Story 3 - Observar la escena desde el ángulo de cámara definido (Priority: P3)
 
-Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terreno de manera que el usuario siempre pueda juzgar la distancia al suelo y, tras el éxito, contemplar el ocaso. El comportamiento exacto de la cámara se define en FR-010.
+Durante el descenso, la cámara sigue a la sonda desde un ángulo lateral fijo para que el usuario juzgue siempre la distancia al suelo sin distraerse. Tras un aterrizaje exitoso, el usuario puede girar la vista 360° alrededor de la nave para contemplar el ocaso y las sombras desde cualquier lado.
 
-**Why this priority**: Mejora la lectura espacial y la contemplación, pero la v2 ya aporta su valor central (P1, P2) con la cámara heredada de la v1.
+**Why this priority**: Mejora la lectura espacial y la contemplación, pero la v2 ya aporta su valor central (P1, P2) con una cámara fija.
 
-**Independent Test**: Realizar un descenso completo y una sesión de Hora Solar verificando que la sonda y la superficie permanecen siempre en encuadre y que los controles de cámara (si existen) responden según FR-010.
+**Independent Test**: Realizar un descenso completo comprobando que la cámara no responde a controles y mantiene el ángulo lateral; luego, en Hora Solar, girar la vista una vuelta completa comprobando que la nave permanece centrada.
 
 **Acceptance Scenarios**:
 
 1. **Given** un descenso en curso, **When** la sonda se acerca al suelo, **Then** la sonda y la zona de contacto permanecen visibles en todo momento, sin que el terreno ni otros elementos las oculten.
 2. **Given** un aterrizaje exitoso, **When** comienza Hora Solar, **Then** la cámara muestra la sonda, el horizonte por donde se pone el sol y las sombras proyectadas sobre el terreno.
+3. **Given** un descenso en curso, **When** el usuario intenta arrastrar o girar la vista, **Then** la cámara mantiene el ángulo lateral fijo.
+4. **Given** Hora Solar activa, **When** el usuario gira la vista 360°, **Then** la nave permanece centrada, la cabina no se mueve y el sol, las sombras y los reflejos se ven coherentes desde cada ángulo.
+5. **Given** una misión fallida, **When** se muestra el resultado, **Then** la vista no se puede girar.
 
 ---
 
@@ -71,10 +81,10 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 
 - **Sol rasante (altura cercana a 0°)**: las sombras pueden alargarse hasta salir del área visible; la escena MUST seguir mostrando su dirección sin artefactos visuales (parpadeos, cortes o sombras que atraviesen la nave).
 - **Sol justo en el horizonte**: la transición de "con sombras" a "sin sombras solares" es continua en la Tierra, Marte y Titán, y abrupta en la Luna, coherente con la transición de cielo de la v1.
-- **Sombra de la sonda sobre relieve irregular**: la sombra se adapta a la forma del terreno (se deforma sobre rocas y pendientes), no se dibuja como una mancha plana flotante.
+- **Sombra de la sonda sobre relieve irregular**: con el sol bajo, la sombra puede salir de la plataforma plana; entonces se adapta a la forma del terreno (se deforma sobre rocas y pendientes), no se dibuja como una mancha plana flotante.
 - **Sonda destruida**: los restos se muestran con volumen e iluminación de la escena; no se habilita Hora Solar ni la cámara de contemplación.
 - **Pérdida de señal por techo de altitud**: la sonda puede salir del encuadre por arriba; la cabina sigue mostrando el estado "Misión fallida – señal perdida" igual que en la v1.
-- **Dispositivo con capacidad gráfica limitada**: comportamiento definido en FR-019.
+- **Dispositivo con capacidad gráfica limitada**: la escena arranca en «Alta» y puede ir lenta; el usuario puede cambiar a «Básica» desde la cabina en cualquier momento, incluso a mitad del descenso, sin que cambie el intento (FR-019).
 - **Pantalla estrecha o rotación del dispositivo**: la cabina se recoloca sin superponerse a la sonda ni a la zona de contacto; la escena se reencuadra sin alterar la física.
 - **Cambio de pestaña o pérdida de foco**: igual que en la v1 (pausa sin afectar la física); al volver, sombras e iluminación corresponden exactamente al estado pausado.
 
@@ -102,12 +112,13 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 
 **Cámara**
 
-- **FR-010**: Comportamiento de la cámara durante el descenso y en Hora Solar: [NEEDS CLARIFICATION: ¿cámara fija siguiendo a la sonda desde un ángulo lateral, rotación libre 360° alrededor de la nave, o un modelo mixto (fija en descenso, libre tras aterrizar)?]
+- **FR-010**: Durante el descenso, la cámara MUST seguir a la sonda desde un ángulo lateral fijo, sin control del usuario. Tras un aterrizaje exitoso, en Hora Solar el usuario MUST poder girar la vista 360° alrededor de la nave (con teclado, arrastre de ratón o gesto táctil), manteniendo la nave en el centro del encuadre. Tras una misión fallida, la cámara MUST permanecer en el ángulo lateral fijo.
 - **FR-011**: En cualquier modo de cámara, la sonda y la zona de contacto MUST permanecer visibles durante todo el descenso.
 
 **Terreno y zona de contacto**
 
-- **FR-012**: Comportamiento físico del contacto con un terreno con volumen: [NEEDS CLARIFICATION: ¿se garantiza siempre una plataforma de aterrizaje plana (el relieve es decorativo) o la sonda puede volcar si toca un borde de cráter o una pendiente, como nueva causa de misión fallida?]
+- **FR-012**: Cada mundo MUST tener una plataforma de aterrizaje plana y horizontal bajo la trayectoria vertical de la sonda. El relieve (rocas, cráteres, pendientes, dunas) MUST ser decorativo y quedar fuera de esa plataforma, sin interferir con la trayectoria ni con el contacto. La sonda MUST NOT volcar, inclinarse ni deslizarse al aterrizar; el resultado depende solo de la velocidad de contacto (FR-001).
+- **FR-021**: La plataforma MUST integrarse visualmente en el terreno de cada mundo (mismos materiales y continuidad con el relieve circundante), sin parecer un objeto artificial añadido.
 
 **Iluminación, sombras y materiales en Hora Solar**
 
@@ -120,7 +131,8 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 
 **Rendimiento y autonomía**
 
-- **FR-019**: Comportamiento en dispositivos sin capacidad para la calidad visual completa: [NEEDS CLARIFICATION: ¿se reduce automáticamente el detalle visual manteniendo la experiencia, se ofrece un modo de calidad seleccionable por el usuario, o se exige un dispositivo mínimo y se informa de que no es compatible?]
+- **FR-019**: La cabina MUST ofrecer un selector de calidad visual con dos niveles, «Alta» y «Básica», con «Alta» seleccionado por defecto. El usuario MUST poder cambiarlo en la pantalla de selección y en cualquier fase del intento; el cambio MUST aplicarse en menos de 2 segundos y MUST NOT alterar la física, el estado del intento ni el resultado. El sistema MUST NOT cambiar el nivel automáticamente. La elección no se conserva entre sesiones.
+- **FR-022**: «Básica» MAY simplificar el detalle del relieve, la suavidad de los bordes de sombra y la riqueza de los reflejos, pero MUST conservar el volumen de la sonda y del terreno, la dirección y longitud de las sombras (FR-013, FR-014), los tintes de cada mundo (FR-016, FR-017), el corte abrupto lunar y la cabina superpuesta.
 - **FR-020**: Todos los recursos visuales de la escena (forma de la sonda, relieve y superficies del terreno, iluminación) MUST estar incluidos en la aplicación; el ciclo completo MUST seguir funcionando sin conexión a red tras la apertura.
 
 ### Key Entities
@@ -129,8 +141,9 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 - **Sonda (representación visual)**: forma con volumen de la sonda de la v1; refleja la luz y el tinte del cielo, proyecta sombra y muestra el estado (intacta, aterrizada, destruida). Su posición proviene exclusivamente del estado físico de la v1.
 - **Luz solar**: fuente de iluminación direccional cuya altura y dirección provienen de Hora Solar (o de la posición inicial durante el descenso). Atributos: dirección, intensidad, color según el mundo y la altura solar, nitidez de sombra.
 - **Sombra proyectada**: proyección de la sonda y del relieve sobre el terreno; su longitud y dirección dependen de la luz solar.
-- **Cámara**: punto de vista del usuario sobre la escena; su comportamiento se define en FR-010.
-- **Cabina**: capa plana superpuesta con la telemetría y controles de la v1, independiente de la escena.
+- **Cámara**: punto de vista del usuario sobre la escena. Modos: seguimiento lateral fijo (descenso y resultado fallido) y giro libre de 360° alrededor de la nave (Hora Solar tras un éxito).
+- **Cabina**: capa plana superpuesta con la telemetría y controles de la v1, independiente de la escena; incluye el selector de calidad visual.
+- **Nivel de calidad visual**: preferencia del usuario para la sesión en curso. Valores: «Alta» (por defecto) y «Básica». Solo afecta al detalle de la presentación (FR-022).
 
 ## Success Criteria *(mandatory)*
 
@@ -140,7 +153,8 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 - **SC-002**: En una prueba con usuarios, al menos el 80 % califica la calidad visual de la v2 como claramente superior a la de la v1 (4 o 5 en una escala de 5).
 - **SC-003**: Al menos el 85 % de los observadores identifica correctamente el mundo mostrado solo a partir de una captura del ocaso con la nave en primer plano (sin cabina visible).
 - **SC-004**: Con el sol a 45° y a 10° de altura, la longitud de sombra medida en la escena se desvía como máximo un 10 % de la longitud esperada por geometría solar.
-- **SC-005**: La escena se percibe fluida (al menos 30 imágenes por segundo) durante el descenso y Hora Solar en un portátil y un móvil de gama media actuales, igual que el objetivo de la v1.
+- **SC-005**: La escena se percibe fluida (al menos 30 imágenes por segundo) durante el descenso y Hora Solar: en «Alta» en un portátil de gama media actual, y en «Básica» en un móvil de gama media actual.
+- **SC-010**: El 100 % de los perfiles de pilotaje de referencia produce el mismo resultado en «Alta» y en «Básica», incluso cambiando de nivel a mitad del descenso.
 - **SC-006**: Desde que se elige un mundo, la escena está lista para iniciar el descenso en menos de 5 segundos (mismo objetivo que la v1).
 - **SC-007**: En el 100 % de las capturas de revisión, la cabina conserva idéntica posición y tamaño y ningún elemento de la escena contiene colores de la paleta Weincode.
 - **SC-008**: Al menos el 70 % de los usuarios de prueba sigue logrando su primer aterrizaje exitoso en 5 intentos o menos (la mejora visual no empeora la jugabilidad respecto a la v1).
@@ -152,6 +166,6 @@ Durante el descenso y tras el aterrizaje, la cámara encuadra la sonda y el terr
 - **Sol durante el descenso**: durante el descenso el sol permanece en la posición alta inicial de la v1; las sombras dinámicas dependientes de la hora solar solo se manipulan en Hora Solar tras un éxito.
 - **Geometría de sombras**: la longitud esperada de una sombra sobre terreno llano es altura / tangente(altura solar); sobre relieve irregular se acepta la deformación natural de la sombra.
 - **Referencias científicas**: los tintes de luz y reflejo reutilizan las referencias documentadas en la v1 para cada mundo; no se requiere investigación óptica nueva salvo para validar la nitidez de sombras por mundo.
-- **Rotación de la sonda**: la sonda mantiene su orientación vertical durante todo el descenso; la actitud de la sonda sigue fuera de alcance salvo lo que se decida en FR-012.
+- **Rotación de la sonda**: la sonda mantiene su orientación vertical durante todo el descenso y tras el contacto; la actitud y el vuelco siguen fuera de alcance (FR-012).
 - **Plataformas**: misma plataforma objetivo que la v1 (navegador de escritorio y móvil, una sola pantalla), idioma español.
-- **Fuera de alcance v2**: movimiento lateral, viento, nuevos mundos, sonido, realidad virtual, puntuaciones, cambios en constantes, umbrales o reglas de mérito.
+- **Fuera de alcance v2**: vuelco o inclinación de la sonda por el terreno, movimiento lateral, viento, nuevos mundos, sonido, realidad virtual, puntuaciones, cambios en constantes, umbrales o reglas de mérito.

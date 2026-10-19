@@ -13,7 +13,7 @@
 
 ## Requirement Completeness
 
-- [ ] No [NEEDS CLARIFICATION] markers remain — pendientes FR-010 (cámara), FR-012 (terreno/vuelco), FR-019 (dispositivos limitados)
+- [x] No [NEEDS CLARIFICATION] markers remain
 - [x] Requirements are testable and unambiguous
 - [x] Success criteria are measurable
 - [x] Success criteria are technology-agnostic (no implementation details)
@@ -31,6 +31,7 @@
 
 ## Notes
 
-- Validación 1 (2026-10-19): todos los ítems pasan salvo los 3 marcadores [NEEDS CLARIFICATION], que esperan respuesta del usuario.
+- Validación 1 (2026-10-19): pendientes 3 marcadores [NEEDS CLARIFICATION].
+- Validación 2 (2026-10-19, tras `/speckit-clarify`): FR-010, FR-012 y FR-019 resueltos; todos los ítems pasan.
 - Verificado: la spec no menciona ninguna tecnología, framework ni formato de archivo.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`

@@ -29,6 +29,15 @@ const MOCK_EARTH: CelestialBody = {
     hasAtmosphere: true,
     keyframes: [],
   },
+  lightingProfile: {
+    sunAzimuthDeg: 250,
+    sunColorDayHex: '#FFF4E0',
+    sunColorSunsetHex: '#FF7A2E',
+    ambientDayIntensity: 0.45,
+    twilightFadeDeg: 6,
+    shadowSoftness: 0.35,
+    scientificReference: 'NASA Earth Observatory',
+  },
 };
 
 const DANGEROUS_STATE: LanderState = {

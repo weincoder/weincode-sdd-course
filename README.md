@@ -29,8 +29,8 @@ Lo más potente de este repositorio es que **una única especificación (`spec.m
 
 | Plataforma | Stack Tecnológico | Ubicación |
 | :--- | :--- | :--- |
-| 🅰️ **Aplicación Web** | **Angular** (Signals, Standalone) | `/apps/weinsolar-angular` |
-| 💙 **Aplicación Móvil / Multiplataforma** | **Flutter** (Material 3, CustomPainter) | `/apps/weinsolar-flutter` |
+| 🅰️ **Aplicación Web** | **Angular 21** (Signals, Standalone, `angular-three` + `Three.js` WebGL2) | `/apps/weinsolar-angular` |
+| 💙 **Aplicación Móvil / Multiplataforma** | **Flutter 3.41** (Material 3, `flutter_scene` + Impeller GPU 3D) | `/apps/weinsolar-flutter` |
 
 ### 📂 Estructura del Repositorio
 
@@ -70,8 +70,8 @@ The core highlight of this repository is that **a single functional specificatio
 
 | Platform | Tech Stack | Path |
 | :--- | :--- | :--- |
-| 🅰️ **Web Application** | **Angular** (Signals, Standalone) | `/apps/weinsolar-angular` |
-| 💙 **Mobile / Cross-Platform** | **Flutter** (Material 3, CustomPainter) | `/apps/weinsolar-flutter` |
+| 🅰️ **Web Application** | **Angular 21** (Signals, Standalone, `angular-three` + `Three.js` WebGL2) | `/apps/weinsolar-angular` |
+| 💙 **Mobile / Cross-Platform** | **Flutter 3.41** (Material 3, `flutter_scene` + Impeller GPU 3D) | `/apps/weinsolar-flutter` |
 
 ### 📂 Repository Structure
 

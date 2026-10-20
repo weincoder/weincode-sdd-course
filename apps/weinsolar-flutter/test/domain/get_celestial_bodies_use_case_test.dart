@@ -93,6 +93,7 @@ void main() {
         initialFuel: 100.0,
         terrainTheme: validWorlds.first.terrainTheme,
         skyOpticalProfile: validWorlds.first.skyOpticalProfile,
+        lightingProfile: validWorlds.first.lightingProfile,
       );
 
       final invalidUseCase = GetCelestialBodiesUseCase(

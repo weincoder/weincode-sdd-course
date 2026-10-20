@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { CelestialBody } from '../../../../domain/models/celestial-body/celestial-body';
+import { VisualQuality } from '../../../../domain/models/scene/visual-quality';
 import { LanderState } from '../../../../domain/models/simulation/lander-state';
 import { TelemetryBadgeComponent } from '../../atoms/telemetry-badge/telemetry-badge.component';
+import { QualityToggleComponent } from '../../molecules/quality-toggle/quality-toggle.component';
 
 @Component({
   selector: 'app-weincode-cockpit-hud',
-  imports: [TelemetryBadgeComponent],
+  imports: [TelemetryBadgeComponent, QualityToggleComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     `
@@ -107,6 +109,11 @@ import { TelemetryBadgeComponent } from '../../atoms/telemetry-badge/telemetry-b
         </div>
 
         <div class="hud__actions">
+          <app-quality-toggle
+            [value]="visualQuality()"
+            (valueChange)="visualQualityChanged.emit($event)"
+          />
+
           @if (landerState().status === 'descending') {
             <button
               type="button"
@@ -175,9 +182,11 @@ export class WeincodeCockpitHudComponent {
   readonly world = input.required<CelestialBody>();
   readonly landerState = input.required<LanderState>();
   readonly isAutopilotActive = input<boolean>(false);
+  readonly visualQuality = input<VisualQuality>('high');
 
   readonly autoLandRequested = output<void>();
   readonly resetRequested = output<void>();
+  readonly visualQualityChanged = output<VisualQuality>();
 
   readonly altitudeFormatted = computed(() => `${this.landerState().altitude.toFixed(1)} m`);
   readonly velocityFormatted = computed(

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'config/providers/simulation_provider.dart';
 import 'config/routes/app_routes.dart';
+import 'domain/usecase/compute_scene_lighting_use_case.dart';
 import 'domain/usecase/evaluate_solar_hour_use_case.dart';
+import 'domain/usecase/generate_terrain_layout_use_case.dart';
 import 'domain/usecase/get_celestial_bodies_use_case.dart';
+import 'domain/usecase/resolve_camera_mode_use_case.dart';
 import 'domain/usecase/simulate_descent_step_use_case.dart';
 import 'infrastructure/driven_adapters/celestial_body_local_adapter.dart';
 
@@ -12,11 +15,17 @@ void main() {
   const getCelestialBodiesUseCase = GetCelestialBodiesUseCase(gateway: gateway);
   const simulateDescentStepUseCase = SimulateDescentStepUseCase();
   const evaluateSolarHourUseCase = EvaluateSolarHourUseCase();
+  const computeSceneLightingUseCase = ComputeSceneLightingUseCase();
+  final generateTerrainLayoutUseCase = GenerateTerrainLayoutUseCase();
+  const resolveCameraModeUseCase = ResolveCameraModeUseCase();
 
   final simulationProvider = SimulationProvider(
     getCelestialBodiesUseCase: getCelestialBodiesUseCase,
     simulateDescentStepUseCase: simulateDescentStepUseCase,
     evaluateSolarHourUseCase: evaluateSolarHourUseCase,
+    computeSceneLightingUseCase: computeSceneLightingUseCase,
+    generateTerrainLayoutUseCase: generateTerrainLayoutUseCase,
+    resolveCameraModeUseCase: resolveCameraModeUseCase,
   );
 
   runApp(WeinSolarApp(simulationProvider: simulationProvider));
@@ -62,7 +71,7 @@ class WeinSolarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WeinSolar v1',
+      title: 'WeinSolar v2',
       debugShowCheckedModeBanner: false,
       theme: buildWeincodeTheme(),
       initialRoute: AppRoutes.simulator,

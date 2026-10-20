@@ -80,7 +80,7 @@ cd apps/weinsolar-angular && npm test -- --watch=false && npm run build
 ! grep -rnE "https?://" apps/weinsolar-flutter/lib/ui/widgets/scene3d apps/weinsolar-angular/src/app/UI/ds/organisms/planetary-scene-3d
 # Sin angular-three-soba ni three-stdlib (R2)
 ! grep -nE "angular-three-soba|three-stdlib" apps/weinsolar-angular/package.json
-# El mismo GLB en los dos stacks (R3)
+# El mismo GLB en los dos stacks (R3) — SHA-256 esperado: e259904949ee4c6ff34068bd700b6726f994703bb963920f47f02f69e0bd7a5b
 shasum -a 256 apps/weinsolar-flutter/assets/models/lander.glb apps/weinsolar-angular/public/models/lander.glb
 ```
 

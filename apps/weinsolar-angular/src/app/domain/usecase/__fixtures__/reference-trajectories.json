@@ -1,0 +1,3162 @@
+{
+  "earth__a_free_fall": {
+    "worldId": "earth",
+    "profile": "a_free_fall",
+    "finalAttempt": {
+      "worldId": "earth",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -80.55952129482164,
+      "remainingFuel": 100,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (80.6 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1564472222222,
+        "verticalVelocity": -25.306583333333332,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 469.1871996772137,
+        "verticalVelocity": -34.247272457503314,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 430.56638503817646,
+        "verticalVelocity": -42.61084041767814,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 383.920834152977,
+        "verticalVelocity": -50.30709068104921,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 329.94834033259497,
+        "verticalVelocity": -57.28288159495994,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 269.38175534496133,
+        "verticalVelocity": -63.51938629354736,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 202.95725087324738,
+        "verticalVelocity": -69.0267982091604,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 131.38864257562443,
+        "verticalVelocity": -73.83774682900689,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 55.34847635278098,
+        "verticalVelocity": -78.00052321270464,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 261,
+        "altitude": 0,
+        "verticalVelocity": -80.55952129482164,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "earth__b_continuous_ceiling_escape": {
+    "worldId": "earth",
+    "profile": "b_continuous_ceiling_escape",
+    "finalAttempt": {
+      "worldId": "earth",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 71.30000000000163,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1831138888889,
+        "verticalVelocity": -24.50658333333333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.88333333333334,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 482.2125038732966,
+        "verticalVelocity": -10.000861541091828,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.38333333333354,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 479.56358523722616,
+        "verticalVelocity": 4.212281364536619,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.88333333333374,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 491.0627109273092,
+        "verticalVelocity": 18.266899755505303,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.38333333333394,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 516.3949996787079,
+        "verticalVelocity": 31.835209890759863,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.88333333333414,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 554.8999195021992,
+        "verticalVelocity": 44.59082940999896,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 82.38333333333433,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 605.6295270361362,
+        "verticalVelocity": 56.28621805808853,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.88333333333453,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 667.4354452409287,
+        "verticalVelocity": 66.76584405317757,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 75.38333333333473,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 739.0610090887559,
+        "verticalVelocity": 75.9642428515689,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 71.88333333333493,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 245,
+        "altitude": 751.8630214953481,
+        "verticalVelocity": 77.3725893288958,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 71.30000000000163,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "earth__c_safe_touchdown_le_2_0": {
+    "worldId": "earth",
+    "profile": "c_safe_touchdown_le_2_0",
+    "finalAttempt": {
+      "worldId": "earth",
+      "outcome": "success",
+      "touchdownVelocity": -1.2533667944837286,
+      "remainingFuel": 51.93333333333533,
+      "isSolarHourUnlocked": true,
+      "failureReasonEs": null
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1564472222222,
+        "verticalVelocity": -25.306583333333332,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 471.58216578801176,
+        "verticalVelocity": -27.975645589779333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.06666666666672,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 443.65339201812117,
+        "verticalVelocity": -28.221626681651475,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.78333333333346,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 415.77063645097127,
+        "verticalVelocity": -27.66866704732859,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.38333333333354,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 387.8549189498606,
+        "verticalVelocity": -27.91536184743107,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.10000000000028,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 359.95832964972897,
+        "verticalVelocity": -28.163107497085257,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.81666666666702,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 332.05518854234305,
+        "verticalVelocity": -27.609030931785615,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.4166666666671,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 304.1709788727585,
+        "verticalVelocity": -27.857451963695947,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.13333333333384,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 276.2267008770575,
+        "verticalVelocity": -28.102584111324827,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.85000000000058,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 248.355881246258,
+        "verticalVelocity": -27.550280189024246,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.45000000000066,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 220.42461150163803,
+        "verticalVelocity": -27.79612164779114,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 87.1666666666674,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 192.53996118931585,
+        "verticalVelocity": -28.04452114096046,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.88333333333414,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 164.6212217261372,
+        "verticalVelocity": -28.291053550543133,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.60000000000088,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 136.7489559828973,
+        "verticalVelocity": -27.738666254007498,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 83.20000000000095,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 108.8423202998866,
+        "verticalVelocity": -27.985861208937425,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 81.9166666666677,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 80.92965637184564,
+        "verticalVelocity": -28.232724956611357,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 80.63333333333443,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 53.036110649789826,
+        "verticalVelocity": -27.679174059280616,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 79.23333333333451,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 28.855212636484936,
+        "verticalVelocity": -17.689347339899037,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 76.43333333333467,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 17.981009003582628,
+        "verticalVelocity": -4.158976180383429,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 73.05000000000153,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 16.515789808085874,
+        "verticalVelocity": -1.1659173494888573,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 71.18333333333497,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 15.295486081758991,
+        "verticalVelocity": -1.3744239839480759,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 69.78333333333505,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 14.053374167707728,
+        "verticalVelocity": -1.5828781318365648,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 68.38333333333513,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 12.816154010903379,
+        "verticalVelocity": -0.9912770682234017,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 66.86666666666855,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 11.610461190209914,
+        "verticalVelocity": -1.1998160634568946,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 65.46666666666863,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 10.382937871924687,
+        "verticalVelocity": -1.4083053238068155,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 64.06666666666871,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 750,
+        "altitude": 9.13361731063156,
+        "verticalVelocity": -1.6167421197882863,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 62.666666666668704,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 780,
+        "altitude": 7.915849101435039,
+        "verticalVelocity": -1.0251869126755315,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 61.15000000000203,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 810,
+        "altitude": 6.702931025404753,
+        "verticalVelocity": -1.2337098175303398,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 59.750000000002025,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 840,
+        "altitude": 5.468182723617483,
+        "verticalVelocity": -1.442181166211921,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 58.35000000000202,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 870,
+        "altitude": 4.238314916748013,
+        "verticalVelocity": -0.8506000737622001,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 56.83333333333535,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 900,
+        "altitude": 3.0133158689809023,
+        "verticalVelocity": -1.0590918863473735,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 55.43333333333534,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 930,
+        "altitude": 1.7931671729654954,
+        "verticalVelocity": -1.2675981628496813,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 54.033333333335335,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 960,
+        "altitude": 0.55118866866039,
+        "verticalVelocity": -1.4760510629551946,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 52.63333333333533,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 974,
+        "altitude": 0,
+        "verticalVelocity": -1.2533667944837286,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 51.93333333333533,
+        "isThrusterActive": false,
+        "status": "landed"
+      }
+    ]
+  },
+  "earth__d_impact_touchdown_gt_2_0": {
+    "worldId": "earth",
+    "profile": "d_impact_touchdown_gt_2_0",
+    "finalAttempt": {
+      "worldId": "earth",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -2.6666172958242536,
+      "remainingFuel": 61.9666666666687,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (2.7 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1564472222222,
+        "verticalVelocity": -25.306583333333332,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 471.58216578801176,
+        "verticalVelocity": -27.975645589779333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.06666666666672,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 443.65339201812117,
+        "verticalVelocity": -28.221626681651475,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.78333333333346,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 415.77063645097127,
+        "verticalVelocity": -27.66866704732859,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.38333333333354,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 387.8549189498606,
+        "verticalVelocity": -27.91536184743107,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.10000000000028,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 359.95832964972897,
+        "verticalVelocity": -28.163107497085257,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.81666666666702,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 332.05518854234305,
+        "verticalVelocity": -27.609030931785615,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.4166666666671,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 304.1709788727585,
+        "verticalVelocity": -27.857451963695947,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.13333333333384,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 276.2267008770575,
+        "verticalVelocity": -28.102584111324827,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.85000000000058,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 248.355881246258,
+        "verticalVelocity": -27.550280189024246,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.45000000000066,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 220.42461150163803,
+        "verticalVelocity": -27.79612164779114,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 87.1666666666674,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 192.53996118931585,
+        "verticalVelocity": -28.04452114096046,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.88333333333414,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 164.6212217261372,
+        "verticalVelocity": -28.291053550543133,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.60000000000088,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 136.7489559828973,
+        "verticalVelocity": -27.738666254007498,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 83.20000000000095,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 108.8423202998866,
+        "verticalVelocity": -27.985861208937425,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 81.9166666666677,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 80.92965637184564,
+        "verticalVelocity": -28.232724956611357,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 80.63333333333443,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 53.036110649789826,
+        "verticalVelocity": -27.679174059280616,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 79.23333333333451,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 28.828545969818272,
+        "verticalVelocity": -18.489347339899037,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 76.55000000000133,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 17.77370460819374,
+        "verticalVelocity": -4.152238203613951,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 73.05000000000153,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 15.356577920543382,
+        "verticalVelocity": -1.955945043502294,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 71.30000000000163,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 13.02820243474278,
+        "verticalVelocity": -2.1606090413269703,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 69.90000000000171,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 10.708506092419576,
+        "verticalVelocity": -2.3653153171617225,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 68.50000000000179,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 8.344209467649115,
+        "verticalVelocity": -2.5698174276367833,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 67.10000000000187,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 6.041971721387257,
+        "verticalVelocity": -1.9744820010983068,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 65.58333333333529,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 3.7217167331056094,
+        "verticalVelocity": -2.179183084581783,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 64.18333333333537,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 750,
+        "altitude": 1.383490052944335,
+        "verticalVelocity": -2.3838050082873394,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 62.78333333333537,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 768,
+        "altitude": 0,
+        "verticalVelocity": -2.6666172958242536,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 61.9666666666687,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "earth__e_alternating_pulses_0_5s": {
+    "worldId": "earth",
+    "profile": "e_alternating_pulses_0_5s",
+    "finalAttempt": {
+      "worldId": "earth",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 52.866666666668664,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1831138888889,
+        "verticalVelocity": -24.50658333333333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.88333333333334,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 482.1858372066299,
+        "verticalVelocity": -10.800861541091828,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.5000000000002,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 466.44374386912887,
+        "verticalVelocity": -19.569457924123082,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.38333333333354,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 454.29772022641725,
+        "verticalVelocity": -6.007094740477122,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.0000000000004,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 443.29387785179205,
+        "verticalVelocity": -14.89706723029725,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.88333333333374,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 435.76107535374473,
+        "verticalVelocity": -1.428030259736789,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.5000000000006,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 429.3046239850254,
+        "verticalVelocity": -10.393085512017416,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.38333333333394,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 426.2391170610193,
+        "verticalVelocity": 3.023369591003038,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.0000000000008,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 424.221444228932,
+        "verticalVelocity": -5.978046799891265,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.88333333333414,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 425.5513855929961,
+        "verticalVelocity": 7.405788415667989,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 82.500000000001,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 427.90351343531466,
+        "verticalVelocity": -1.6182195224663742,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 82.38333333333433,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 433.58017848873106,
+        "verticalVelocity": 11.72889863868148,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 79.0000000000012,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 440.2274972887074,
+        "verticalVelocity": 2.663631334262177,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.88333333333453,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 450.1637674094865,
+        "verticalVelocity": 15.94909929554428,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 75.50000000000139,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 460.9861237021419,
+        "verticalVelocity": 6.809705710683482,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 75.38333333333473,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 475.0297474050967,
+        "verticalVelocity": 20.002341119207724,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 72.00000000000159,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 489.8453917733159,
+        "verticalVelocity": 10.759959114449293,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 71.88333333333493,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 507.7865246325119,
+        "verticalVelocity": 23.83391697852535,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 68.50000000000179,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 526.3622474954201,
+        "verticalVelocity": 14.465857146612365,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 68.38333333333513,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 547.945836875705,
+        "verticalVelocity": 27.40195576743006,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 65.00000000000199,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 570.0101570449234,
+        "verticalVelocity": 17.892374262691114,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 64.88333333333533,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 594.9496628256595,
+        "verticalVelocity": 30.678395996880276,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 61.50000000000203,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 620.2066215140306,
+        "verticalVelocity": 21.01826425229309,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 61.383333333335365,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 648.1976659113532,
+        "verticalVelocity": 33.64860677559141,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 58.00000000000202,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 676.3399413824627,
+        "verticalVelocity": 23.835111107666506,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 57.88333333333535,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 750,
+        "altitude": 707.0727511931642,
+        "verticalVelocity": 36.30995857176061,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 54.500000000002004,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 780,
+        "altitude": 737.7931423400349,
+        "verticalVelocity": 26.34551913398164,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 54.38333333333534,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 793,
+        "altitude": 750.5656496980916,
+        "verticalVelocity": 32.135462367009055,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 52.866666666668664,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "mars__a_free_fall": {
+    "worldId": "mars",
+    "profile": "a_free_fall",
+    "finalAttempt": {
+      "worldId": "mars",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -63.78495487501486,
+      "remainingFuel": 100,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (63.8 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.990741,
+        "verticalVelocity": -20.18518,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 464.409110618945,
+        "verticalVelocity": -25.737566245854637,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 421.5040109386189,
+        "verticalVelocity": -31.283122071692354,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 370.2868245651553,
+        "verticalVelocity": -36.82038170363637,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 310.77112614681545,
+        "verticalVelocity": -42.347888154877516,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 242.97266801152523,
+        "verticalVelocity": -47.86419474720496,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 166.90936353959435,
+        "verticalVelocity": -53.36786660945115,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 82.60126830878475,
+        "verticalVelocity": -58.85748214959226,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 237,
+        "altitude": 0,
+        "verticalVelocity": -63.78495487501486,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "mars__b_continuous_ceiling_escape": {
+    "worldId": "mars",
+    "profile": "b_continuous_ceiling_escape",
+    "finalAttempt": {
+      "worldId": "mars",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 78.82500000000034,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.050741,
+        "verticalVelocity": -18.98518,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.825,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 494.16253901615704,
+        "verticalVelocity": 11.451421306941365,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.57500000000009,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 534.9174066281695,
+        "verticalVelocity": 41.86815354281817,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.32500000000017,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 621.2561479353042,
+        "verticalVelocity": 72.22457003331527,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.07500000000026,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 753.0541388532795,
+        "verticalVelocity": 102.47668234078337,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.82500000000034,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "mars__c_safe_touchdown_le_2_0": {
+    "worldId": "mars",
+    "profile": "c_safe_touchdown_le_2_0",
+    "finalAttempt": {
+      "worldId": "mars",
+      "outcome": "success",
+      "touchdownVelocity": -0.4297124486145629,
+      "remainingFuel": 76.72500000000038,
+      "isSolarHourUnlocked": true,
+      "failureReasonEs": null
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.990741,
+        "verticalVelocity": -20.18518,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 464.409110618945,
+        "verticalVelocity": -25.737566245854637,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 423.4234720935101,
+        "verticalVelocity": -27.68472335372822,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.47500000000001,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 382.0376920081144,
+        "verticalVelocity": -27.23143069207581,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.60000000000002,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 340.6118358106233,
+        "verticalVelocity": -27.978155949067695,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.90000000000003,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 299.2059300854693,
+        "verticalVelocity": -27.524845402166104,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.02500000000005,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 257.7599854709865,
+        "verticalVelocity": -27.071499798036694,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.15000000000006,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 216.3340153082424,
+        "verticalVelocity": -27.818224763219284,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.45000000000007,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 175.04792432125265,
+        "verticalVelocity": -27.365019961289573,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.57500000000009,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 133.66165709146912,
+        "verticalVelocity": -28.1117801583872,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.8750000000001,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 92.35523767943491,
+        "verticalVelocity": -27.658557538291983,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.00000000000011,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 51.00867946788261,
+        "verticalVelocity": -27.205299509586478,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.12500000000013,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 18.800046780731435,
+        "verticalVelocity": -8.757700803320978,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.62500000000018,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 16.11092342838283,
+        "verticalVelocity": -1.1224765963539496,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.70000000000022,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 14.854349688502797,
+        "verticalVelocity": -0.6874561067230465,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.82500000000023,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 13.47030748934103,
+        "verticalVelocity": -1.4524341471736624,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.12500000000024,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 12.13879879936499,
+        "verticalVelocity": -1.0174116515426255,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.25000000000026,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 10.85982274202625,
+        "verticalVelocity": -0.5823905873876525,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 83.37500000000027,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 9.513377506400225,
+        "verticalVelocity": -1.3473697056287517,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 82.67500000000028,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 8.21946484798703,
+        "verticalVelocity": -0.912348224619765,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 81.8000000000003,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 6.858086346934335,
+        "verticalVelocity": -0.4773248859281271,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 80.92500000000031,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 5.549239396913341,
+        "verticalVelocity": -1.242305024943775,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 80.22500000000032,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 4.232924354588712,
+        "verticalVelocity": -0.8072828680395224,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 79.35000000000034,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 2.8491427064820543,
+        "verticalVelocity": -0.37225907081727194,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.47500000000035,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 1.5178951856968597,
+        "verticalVelocity": -1.1372384297666107,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 77.77500000000036,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 750,
+        "altitude": 0.2391791727975518,
+        "verticalVelocity": -0.7022173310646553,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 76.90000000000038,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 755,
+        "altitude": 0,
+        "verticalVelocity": -0.4297124486145629,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 76.72500000000038,
+        "isThrusterActive": false,
+        "status": "landed"
+      }
+    ]
+  },
+  "mars__d_impact_touchdown_gt_2_0": {
+    "worldId": "mars",
+    "profile": "d_impact_touchdown_gt_2_0",
+    "finalAttempt": {
+      "worldId": "mars",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -2.5469353877337744,
+      "remainingFuel": 82.85000000000028,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (2.5 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.990741,
+        "verticalVelocity": -20.18518,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 464.409110618945,
+        "verticalVelocity": -25.737566245854637,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 423.4234720935101,
+        "verticalVelocity": -27.68472335372822,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.47500000000001,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 382.0376920081144,
+        "verticalVelocity": -27.23143069207581,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.60000000000002,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 340.6118358106233,
+        "verticalVelocity": -27.978155949067695,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.90000000000003,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 299.2059300854693,
+        "verticalVelocity": -27.524845402166104,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.02500000000005,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 257.7599854709865,
+        "verticalVelocity": -27.071499798036694,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.15000000000006,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 216.3340153082424,
+        "verticalVelocity": -27.818224763219284,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.45000000000007,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 175.04792432125265,
+        "verticalVelocity": -27.365019961289573,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.57500000000009,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 133.66165709146912,
+        "verticalVelocity": -28.1117801583872,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.8750000000001,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 92.35523767943491,
+        "verticalVelocity": -27.658557538291983,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.00000000000011,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 51.00867946788261,
+        "verticalVelocity": -27.205299509586478,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.12500000000013,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 18.800046780731435,
+        "verticalVelocity": -8.757700803320978,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.62500000000018,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 14.850956849070357,
+        "verticalVelocity": -2.3224211367490706,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.87500000000021,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 11.914525550322193,
+        "verticalVelocity": -1.887324735085555,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.00000000000023,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 8.910739570319834,
+        "verticalVelocity": -1.4522243685582785,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.12500000000024,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 5.89960252056705,
+        "verticalVelocity": -2.2171272593058453,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.42500000000025,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 3.0011101509882687,
+        "verticalVelocity": -1.782033236546073,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 83.55000000000027,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 0,
+        "verticalVelocity": -2.5469353877337744,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 82.85000000000028,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "mars__e_alternating_pulses_0_5s": {
+    "worldId": "mars",
+    "profile": "e_alternating_pulses_0_5s",
+    "finalAttempt": {
+      "worldId": "mars",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 83.37500000000027,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.050741,
+        "verticalVelocity": -18.98518,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.825,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 494.10253901615704,
+        "verticalVelocity": 10.251421306941364,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.75000000000009,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 505.22543247535043,
+        "verticalVelocity": 5.8849874248395215,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.57500000000009,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 537.5744731696061,
+        "verticalVelocity": 35.10796155645669,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.50000000000017,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 585.9628744711355,
+        "verticalVelocity": 30.71769667463283,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.32500000000017,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 655.5350318001041,
+        "verticalVelocity": 59.9013654780697,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.25000000000026,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 741.0714243731036,
+        "verticalVelocity": 55.45785350365827,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 84.07500000000026,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 184,
+        "altitude": 752.6689691267305,
+        "verticalVelocity": 59.50546142584096,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 83.37500000000027,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "moon__a_free_fall": {
+    "worldId": "moon",
+    "profile": "a_free_fall",
+    "finalAttempt": {
+      "worldId": "moon",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -42.97199999999978,
+      "remainingFuel": 100,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (43.0 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.9928,
+        "verticalVelocity": -15.108,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 465.4287999999999,
+        "verticalVelocity": -18.348000000000017,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 425.38479999999987,
+        "verticalVelocity": -21.588000000000033,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 378.8607999999998,
+        "verticalVelocity": -24.82800000000005,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 325.8567999999996,
+        "verticalVelocity": -28.068000000000065,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 266.37279999999953,
+        "verticalVelocity": -31.30800000000008,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 200.40879999999942,
+        "verticalVelocity": -34.548000000000016,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 127.9647999999995,
+        "verticalVelocity": -37.787999999999926,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 49.040799999999756,
+        "verticalVelocity": -41.027999999999835,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 258,
+        "altitude": 0,
+        "verticalVelocity": -42.97199999999978,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "moon__b_continuous_ceiling_escape": {
+    "worldId": "moon",
+    "profile": "b_continuous_ceiling_escape",
+    "finalAttempt": {
+      "worldId": "moon",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 80.86666666666659,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.0994666666667,
+        "verticalVelocity": -13.508,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.76666666666667,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 518.3354666666669,
+        "verticalVelocity": 31.252000000000017,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 627.0914666666669,
+        "verticalVelocity": 76.012,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.76666666666661,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 81,
+        "altitude": 756.4850666666671,
+        "verticalVelocity": 107.3440000000001,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 80.86666666666659,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "moon__c_safe_touchdown_le_2_0": {
+    "worldId": "moon",
+    "profile": "c_safe_touchdown_le_2_0",
+    "finalAttempt": {
+      "worldId": "moon",
+      "outcome": "success",
+      "touchdownVelocity": -1.256000000000132,
+      "remainingFuel": 86.46666666666661,
+      "isSolarHourUnlocked": true,
+      "failureReasonEs": null
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.9928,
+        "verticalVelocity": -15.108,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 465.4287999999999,
+        "verticalVelocity": -18.348000000000017,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 425.38479999999987,
+        "verticalVelocity": -21.588000000000033,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 378.8607999999998,
+        "verticalVelocity": -24.82800000000005,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 325.8567999999996,
+        "verticalVelocity": -28.068000000000065,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 271.2794666666661,
+        "verticalVelocity": -26.508000000000077,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.3,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 216.72879999999927,
+        "verticalVelocity": -26.54800000000009,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.83333333333333,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 162.09813333333238,
+        "verticalVelocity": -26.588000000000104,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.36666666666666,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 107.49413333333214,
+        "verticalVelocity": -26.628000000000117,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.89999999999999,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 52.916799999998545,
+        "verticalVelocity": -26.66800000000013,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.43333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 17.352799999998282,
+        "verticalVelocity": -1.1080000000001253,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.2333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 16.16213333333136,
+        "verticalVelocity": -1.1480000000001258,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 14.891466666664442,
+        "verticalVelocity": -1.1880000000001263,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.29999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 13.64746666666419,
+        "verticalVelocity": -1.2280000000001268,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.8333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 12.430133333330604,
+        "verticalVelocity": -1.2680000000001272,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.36666666666663,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 11.132799999997015,
+        "verticalVelocity": -1.3080000000001277,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 90.89999999999996,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 9.968799999996763,
+        "verticalVelocity": -1.3480000000001282,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 90.4333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 8.724799999996506,
+        "verticalVelocity": -1.3880000000001287,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.96666666666663,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 7.614133333329582,
+        "verticalVelocity": 0.17199999999987092,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 89.26666666666662,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 6.423466666662658,
+        "verticalVelocity": 0.13199999999987044,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.79999999999995,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 5.152799999995732,
+        "verticalVelocity": 0.09199999999986996,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 88.33333333333329,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 4.015466666662139,
+        "verticalVelocity": 0.05199999999986958,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 87.86666666666662,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 2.7981333333285447,
+        "verticalVelocity": 0.011999999999869101,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 87.39999999999995,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 1.6074666666616158,
+        "verticalVelocity": -0.02800000000013128,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.93333333333328,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 0.44346666666135276,
+        "verticalVelocity": -0.06800000000013176,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.46666666666661,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 731,
+        "altitude": 0,
+        "verticalVelocity": -1.256000000000132,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 86.46666666666661,
+        "isThrusterActive": false,
+        "status": "landed"
+      }
+    ]
+  },
+  "moon__d_impact_touchdown_gt_2_0": {
+    "worldId": "moon",
+    "profile": "d_impact_touchdown_gt_2_0",
+    "finalAttempt": {
+      "worldId": "moon",
+      "outcome": "success",
+      "touchdownVelocity": -1.524000000000139,
+      "remainingFuel": 90.89999999999996,
+      "isSolarHourUnlocked": true,
+      "failureReasonEs": null
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 498.9928,
+        "verticalVelocity": -15.108,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 465.4287999999999,
+        "verticalVelocity": -18.348000000000017,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 425.38479999999987,
+        "verticalVelocity": -21.588000000000033,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 378.8607999999998,
+        "verticalVelocity": -24.82800000000005,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 325.8567999999996,
+        "verticalVelocity": -28.068000000000065,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 271.2794666666661,
+        "verticalVelocity": -26.508000000000077,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.3,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 216.72879999999927,
+        "verticalVelocity": -26.54800000000009,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.83333333333333,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 162.09813333333238,
+        "verticalVelocity": -26.588000000000104,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 98.36666666666666,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 107.49413333333214,
+        "verticalVelocity": -26.628000000000117,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.89999999999999,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 52.916799999998545,
+        "verticalVelocity": -26.66800000000013,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.43333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 17.13946666666495,
+        "verticalVelocity": -1.1080000000001253,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.2333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 13.815466666664697,
+        "verticalVelocity": -1.148000000000128,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 10.411466666664438,
+        "verticalVelocity": -1.1880000000001307,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.29999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 6.927466666664175,
+        "verticalVelocity": -1.2280000000001334,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.8333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 3.576799999997238,
+        "verticalVelocity": -1.2680000000001361,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.36666666666663,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 0.14613333333029666,
+        "verticalVelocity": -1.3080000000001388,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 90.89999999999996,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 452,
+        "altitude": 0,
+        "verticalVelocity": -1.524000000000139,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 90.89999999999996,
+        "isThrusterActive": false,
+        "status": "landed"
+      }
+    ]
+  },
+  "moon__e_alternating_pulses_0_5s": {
+    "worldId": "moon",
+    "profile": "e_alternating_pulses_0_5s",
+    "finalAttempt": {
+      "worldId": "moon",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 85.99999999999994,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.0994666666667,
+        "verticalVelocity": -13.508,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.76666666666667,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 518.2288000000002,
+        "verticalVelocity": 29.652000000000015,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.99999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 574.2914666666669,
+        "verticalVelocity": 28.012,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 676.4608000000002,
+        "verticalVelocity": 71.17199999999995,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.99999999999994,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 106,
+        "altitude": 751.3984000000002,
+        "verticalVelocity": 69.44399999999989,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.99999999999994,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "titan__a_free_fall": {
+    "worldId": "titan",
+    "profile": "a_free_fall",
+    "finalAttempt": {
+      "worldId": "titan",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -17.787621385550498,
+      "remainingFuel": 100,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (17.8 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1967047111111,
+        "verticalVelocity": -12.049429333333334,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 473.6741837229163,
+        "verticalVelocity": -13.380791318880027,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 445.77409461772305,
+        "verticalVelocity": -14.442109846755697,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 415.9965426398231,
+        "verticalVelocity": -15.272794895146735,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 384.7603951691017,
+        "verticalVelocity": -15.913679954308543,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 352.4053691302545,
+        "verticalVelocity": -16.40266247291834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 319.20040279395386,
+        "verticalVelocity": -16.772587927247834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 285.354575289426,
+        "verticalVelocity": -17.050647500126157,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 251.0282405257384,
+        "verticalVelocity": -17.25864428245098,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 216.34314541656843,
+        "verticalVelocity": -17.413668510664035,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 181.39103257786863,
+        "verticalVelocity": -17.528898979698113,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 146.24065009642698,
+        "verticalVelocity": -17.614378314344204,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 110.94330228846279,
+        "verticalVelocity": -17.677693284302343,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 75.53715875155389,
+        "verticalVelocity": -17.72453914063901,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 40.05055283626259,
+        "verticalVelocity": -17.759171364433563,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 4.504481267732467,
+        "verticalVelocity": -17.784758794303738,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 454,
+        "altitude": 0,
+        "verticalVelocity": -17.787621385550498,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "titan__b_continuous_ceiling_escape": {
+    "worldId": "titan",
+    "profile": "b_continuous_ceiling_escape",
+    "finalAttempt": {
+      "worldId": "titan",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 78.53333333333325,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.30337137777775,
+        "verticalVelocity": -10.449429333333333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.76666666666667,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 524.4045300297854,
+        "verticalVelocity": 32.62814978788733,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 620.0716167107449,
+        "verticalVelocity": 58.72507861331939,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.76666666666661,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 749.6548707965403,
+        "verticalVelocity": 68.71538376020264,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.76666666666658,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 91,
+        "altitude": 754.2475743858297,
+        "verticalVelocity": 68.89055383934114,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 78.53333333333325,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  },
+  "titan__c_safe_touchdown_le_2_0": {
+    "worldId": "titan",
+    "profile": "c_safe_touchdown_le_2_0",
+    "finalAttempt": {
+      "worldId": "titan",
+      "outcome": "success",
+      "touchdownVelocity": -0.9495346344013232,
+      "remainingFuel": 91.59999999999997,
+      "isSolarHourUnlocked": true,
+      "failureReasonEs": null
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1967047111111,
+        "verticalVelocity": -12.049429333333334,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 473.6741837229163,
+        "verticalVelocity": -13.380791318880027,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 445.77409461772305,
+        "verticalVelocity": -14.442109846755697,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 415.9965426398231,
+        "verticalVelocity": -15.272794895146735,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 384.7603951691017,
+        "verticalVelocity": -15.913679954308543,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 352.4053691302545,
+        "verticalVelocity": -16.40266247291834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 319.20040279395386,
+        "verticalVelocity": -16.772587927247834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 285.354575289426,
+        "verticalVelocity": -17.050647500126157,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 251.0282405257384,
+        "verticalVelocity": -17.25864428245098,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 216.34314541656843,
+        "verticalVelocity": -17.413668510664035,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 181.39103257786863,
+        "verticalVelocity": -17.528898979698113,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 146.24065009642698,
+        "verticalVelocity": -17.614378314344204,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 110.94330228846279,
+        "verticalVelocity": -17.677693284302343,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 75.53715875155389,
+        "verticalVelocity": -17.72453914063901,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 40.05055283626259,
+        "verticalVelocity": -17.759171364433563,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 17.225833423451622,
+        "verticalVelocity": -1.2698694231560272,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.43333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 16.163517212752993,
+        "verticalVelocity": -0.7694830574182122,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.96666666666665,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 15.035941510811336,
+        "verticalVelocity": -0.2685858988647774,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.49999999999999,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 13.629314899371959,
+        "verticalVelocity": -1.3673530028390926,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.26666666666665,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 12.584800396071929,
+        "verticalVelocity": -0.867181330849657,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.79999999999998,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 11.475233567919355,
+        "verticalVelocity": -0.36635193958328155,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.33333333333331,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 630,
+        "altitude": 10.0868385231329,
+        "verticalVelocity": 0.13548225529103375,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.86666666666665,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 660,
+        "altitude": 9.060107105229894,
+        "verticalVelocity": -0.9651518645224253,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.63333333333331,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 690,
+        "altitude": 7.967909803320278,
+        "verticalVelocity": -0.46441619122157357,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 94.16666666666664,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 720,
+        "altitude": 6.597125852233963,
+        "verticalVelocity": 0.037471760480124905,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.69999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 750,
+        "altitude": 5.481360532731014,
+        "verticalVelocity": -1.0628217634151311,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 93.46666666666664,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 780,
+        "altitude": 4.40701889624262,
+        "verticalVelocity": -0.562211530157593,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.99999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 810,
+        "altitude": 3.1608951064113877,
+        "verticalVelocity": -0.06085096278237774,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.5333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 840,
+        "altitude": 1.9554965598726775,
+        "verticalVelocity": -1.1607442424810843,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.29999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 870,
+        "altitude": 0.89838293904785,
+        "verticalVelocity": -0.6602855178775794,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.8333333333333,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 891,
+        "altitude": 0,
+        "verticalVelocity": -0.9495346344013232,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 91.59999999999997,
+        "isThrusterActive": false,
+        "status": "landed"
+      }
+    ]
+  },
+  "titan__d_impact_touchdown_gt_2_0": {
+    "worldId": "titan",
+    "profile": "d_impact_touchdown_gt_2_0",
+    "finalAttempt": {
+      "worldId": "titan",
+      "outcome": "failedImpact",
+      "touchdownVelocity": -2.0264139570971658,
+      "remainingFuel": 95.56666666666665,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – Velocidad de impacto (2.0 m/s) superó el umbral estructural de 2,0 m/s"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.1967047111111,
+        "verticalVelocity": -12.049429333333334,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 473.6741837229163,
+        "verticalVelocity": -13.380791318880027,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 445.77409461772305,
+        "verticalVelocity": -14.442109846755697,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 415.9965426398231,
+        "verticalVelocity": -15.272794895146735,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 384.7603951691017,
+        "verticalVelocity": -15.913679954308543,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 150,
+        "altitude": 352.4053691302545,
+        "verticalVelocity": -16.40266247291834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 180,
+        "altitude": 319.20040279395386,
+        "verticalVelocity": -16.772587927247834,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 210,
+        "altitude": 285.354575289426,
+        "verticalVelocity": -17.050647500126157,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 240,
+        "altitude": 251.0282405257384,
+        "verticalVelocity": -17.25864428245098,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 270,
+        "altitude": 216.34314541656843,
+        "verticalVelocity": -17.413668510664035,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 300,
+        "altitude": 181.39103257786863,
+        "verticalVelocity": -17.528898979698113,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 330,
+        "altitude": 146.24065009642698,
+        "verticalVelocity": -17.614378314344204,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 360,
+        "altitude": 110.94330228846279,
+        "verticalVelocity": -17.677693284302343,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 390,
+        "altitude": 75.53715875155389,
+        "verticalVelocity": -17.72453914063901,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 420,
+        "altitude": 40.05055283626259,
+        "verticalVelocity": -17.759171364433563,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 100,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 450,
+        "altitude": 17.024343100898502,
+        "verticalVelocity": -1.2563795764131633,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.43333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 480,
+        "altitude": 13.55610833107513,
+        "verticalVelocity": -2.3345006557772416,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 97.19999999999999,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 510,
+        "altitude": 10.384643796388291,
+        "verticalVelocity": -1.8148395966042734,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.73333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 540,
+        "altitude": 6.976886709919448,
+        "verticalVelocity": -1.2916548217585184,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.26666666666665,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 570,
+        "altitude": 3.4391241171118807,
+        "verticalVelocity": -2.368763801585296,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 96.03333333333332,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 600,
+        "altitude": 0.20010264737668565,
+        "verticalVelocity": -1.8481737386370416,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.56666666666665,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 602,
+        "altitude": 0,
+        "verticalVelocity": -2.0264139570971658,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 95.56666666666665,
+        "isThrusterActive": false,
+        "status": "crashed"
+      }
+    ]
+  },
+  "titan__e_alternating_pulses_0_5s": {
+    "worldId": "titan",
+    "profile": "e_alternating_pulses_0_5s",
+    "finalAttempt": {
+      "worldId": "titan",
+      "outcome": "failedSignalLost",
+      "touchdownVelocity": null,
+      "remainingFuel": 85.0666666666666,
+      "isSolarHourUnlocked": false,
+      "failureReasonEs": "Misión fallida – señal perdida"
+    },
+    "samples": [
+      {
+        "tick": 0,
+        "altitude": 499.30337137777775,
+        "verticalVelocity": -10.449429333333333,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 99.76666666666667,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 30,
+        "altitude": 524.2978633631187,
+        "verticalVelocity": 31.02814978788733,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.99999999999997,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 60,
+        "altitude": 576.8058665440138,
+        "verticalVelocity": 23.91922884004624,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 92.76666666666664,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 90,
+        "altitude": 659.7511675063291,
+        "verticalVelocity": 53.01697639378176,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.99999999999994,
+        "isThrusterActive": false,
+        "status": "descending"
+      },
+      {
+        "tick": 120,
+        "altitude": 744.4415800337181,
+        "verticalVelocity": 36.05408384048796,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.76666666666661,
+        "isThrusterActive": true,
+        "status": "descending"
+      },
+      {
+        "tick": 123,
+        "altitude": 752.1030455468087,
+        "verticalVelocity": 39.410182207379194,
+        "horizontalVelocity": 0,
+        "fuelPercentage": 85.0666666666666,
+        "isThrusterActive": false,
+        "status": "lostSignal"
+      }
+    ]
+  }
+}

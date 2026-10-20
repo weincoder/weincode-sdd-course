@@ -1,38 +1,59 @@
 import 'package:flutter/foundation.dart';
 
 import '../../domain/models/celestial_body/celestial_body.dart';
+import '../../domain/models/scene/camera_mode.dart';
+import '../../domain/models/scene/scene_lighting_state.dart';
+import '../../domain/models/scene/terrain_layout.dart';
+import '../../domain/models/scene/visual_quality.dart';
 import '../../domain/models/simulation/lander_state.dart';
 import '../../domain/models/simulation/mission_attempt.dart';
 import '../../domain/models/simulation/solar_hour_state.dart';
+import '../../domain/usecase/compute_scene_lighting_use_case.dart';
 import '../../domain/usecase/evaluate_solar_hour_use_case.dart';
+import '../../domain/usecase/generate_terrain_layout_use_case.dart';
 import '../../domain/usecase/get_celestial_bodies_use_case.dart';
+import '../../domain/usecase/resolve_camera_mode_use_case.dart';
 import '../../domain/usecase/simulate_descent_step_use_case.dart';
+import '../../ui/widgets/scene3d/scene_descriptor_mapper.dart';
 
 class SimulationProvider extends ChangeNotifier {
   final GetCelestialBodiesUseCase getCelestialBodiesUseCase;
   final SimulateDescentStepUseCase simulateDescentStepUseCase;
   final EvaluateSolarHourUseCase evaluateSolarHourUseCase;
+  final ComputeSceneLightingUseCase computeSceneLightingUseCase;
+  final GenerateTerrainLayoutUseCase generateTerrainLayoutUseCase;
+  final ResolveCameraModeUseCase resolveCameraModeUseCase;
 
   List<CelestialBody> _worlds = const [];
   CelestialBody? _selectedWorld;
   LanderState? _landerState;
   MissionAttempt? _missionAttempt;
   SolarHourState _solarHourState = SolarHourState.locked();
+  VisualQuality _visualQuality = VisualQuality.high;
   bool _isPaused = false;
   bool _isLoading = false;
   bool _isAutopilotActive = false;
+
+  CelestialBodyId? _cachedTerrainWorldId;
+  VisualQuality? _cachedTerrainQuality;
+  TerrainLayout? _cachedTerrainLayout;
 
   SimulationProvider({
     required this.getCelestialBodiesUseCase,
     this.simulateDescentStepUseCase = const SimulateDescentStepUseCase(),
     this.evaluateSolarHourUseCase = const EvaluateSolarHourUseCase(),
-  });
+    this.computeSceneLightingUseCase = const ComputeSceneLightingUseCase(),
+    GenerateTerrainLayoutUseCase? generateTerrainLayoutUseCase,
+    this.resolveCameraModeUseCase = const ResolveCameraModeUseCase(),
+  }) : generateTerrainLayoutUseCase =
+            generateTerrainLayoutUseCase ?? GenerateTerrainLayoutUseCase();
 
   List<CelestialBody> get worlds => _worlds;
   CelestialBody? get selectedWorld => _selectedWorld;
   LanderState? get landerState => _landerState;
   MissionAttempt? get missionAttempt => _missionAttempt;
   SolarHourState get solarHourState => _solarHourState;
+  VisualQuality get visualQuality => _visualQuality;
   bool get isPaused => _isPaused;
   bool get isLoading => _isLoading;
   bool get isAutopilotActive => _isAutopilotActive;
@@ -48,6 +69,64 @@ class SimulationProvider extends ChangeNotifier {
       _missionAttempt?.outcome == MissionOutcome.success &&
       _missionAttempt?.isSolarHourUnlocked == true &&
       _solarHourState.isUnlocked;
+
+  CameraMode get cameraMode =>
+      resolveCameraModeUseCase.execute(_solarHourState);
+
+  SceneLightingState? get sceneLighting {
+    final world = _selectedWorld;
+    if (world == null) {
+      return null;
+    }
+    final elevationDeg = _solarHourState.isUnlocked
+        ? _solarHourState.solarElevationDeg
+        : SolarHourState.defaultInitialElevationDeg;
+    return computeSceneLightingUseCase.execute(world, elevationDeg);
+  }
+
+  TerrainLayout? get terrainLayout {
+    final world = _selectedWorld;
+    if (world == null) {
+      return null;
+    }
+    if (_cachedTerrainLayout != null &&
+        _cachedTerrainWorldId == world.id &&
+        _cachedTerrainQuality == _visualQuality) {
+      return _cachedTerrainLayout;
+    }
+    _cachedTerrainWorldId = world.id;
+    _cachedTerrainQuality = _visualQuality;
+    _cachedTerrainLayout =
+        generateTerrainLayoutUseCase.execute(world, _visualQuality);
+    return _cachedTerrainLayout;
+  }
+
+  SceneDescriptor? get sceneDescriptor {
+    final world = _selectedWorld;
+    final lander = _landerState;
+    final lighting = sceneLighting;
+    final terrain = terrainLayout;
+    if (world == null || lander == null || lighting == null || terrain == null) {
+      return null;
+    }
+    return SceneDescriptorMapper.from(
+      world: world,
+      landerState: lander,
+      lighting: lighting,
+      terrain: terrain,
+      cameraMode: cameraMode,
+      cameraAzimuthDeg: _solarHourState.cameraAzimuthDeg,
+      quality: _visualQuality,
+    );
+  }
+
+  void setVisualQuality(VisualQuality quality) {
+    if (_visualQuality == quality) {
+      return;
+    }
+    _visualQuality = quality;
+    notifyListeners();
+  }
 
   Future<void> loadWorlds() async {
     _isLoading = true;
@@ -195,20 +274,21 @@ class SimulationProvider extends ChangeNotifier {
   void updateCameraAzimuth(double azimuthDeg) {
     final world = _selectedWorld;
     final attempt = _missionAttempt;
-    if (world == null || attempt == null) {
+    if (world == null || attempt == null || cameraMode != CameraMode.orbit) {
       return;
     }
+    final normalizedAzimuth = ((azimuthDeg % 360.0) + 360.0) % 360.0;
     _solarHourState = evaluateSolarHourUseCase.execute(
       world: world,
       attempt: attempt,
       solarElevationDeg: _solarHourState.solarElevationDeg,
-      cameraAzimuthDeg: azimuthDeg,
+      cameraAzimuthDeg: normalizedAzimuth,
     );
     notifyListeners();
   }
 
   void rotateCameraByDelta(double deltaDeg) {
-    if (!isSolarHourUnlocked) {
+    if (cameraMode != CameraMode.orbit) {
       return;
     }
     updateCameraAzimuth(_solarHourState.cameraAzimuthDeg + deltaDeg);

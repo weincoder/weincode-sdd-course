@@ -12,6 +12,13 @@ CelestialBody celestialBodyDataToEntity(Map<String, dynamic> raw) {
 
   final terrainMap = raw['terrainTheme'] as Map<String, dynamic>;
   final opticalMap = raw['skyOpticalProfile'] as Map<String, dynamic>;
+  final lightingMap = raw['lightingProfile'] as Map<String, dynamic>?;
+
+  if (lightingMap == null) {
+    throw StateError(
+      'Domain error: missing required lightingProfile for CelestialBody "$idStr".',
+    );
+  }
 
   return CelestialBody(
     id: id,
@@ -38,6 +45,15 @@ CelestialBody celestialBodyDataToEntity(Map<String, dynamic> raw) {
       nightZenithHex: opticalMap['nightZenithHex'] as String,
       nightHorizonHex: opticalMap['nightHorizonHex'] as String,
       sunHaloHex: opticalMap['sunHaloHex'] as String,
+    ),
+    lightingProfile: LightingProfile(
+      sunAzimuthDeg: (lightingMap['sunAzimuthDeg'] as num).toDouble(),
+      sunColorDayHex: lightingMap['sunColorDayHex'] as String,
+      sunColorSunsetHex: lightingMap['sunColorSunsetHex'] as String,
+      ambientDayIntensity: (lightingMap['ambientDayIntensity'] as num).toDouble(),
+      twilightFadeDeg: (lightingMap['twilightFadeDeg'] as num).toDouble(),
+      shadowSoftness: (lightingMap['shadowSoftness'] as num).toDouble(),
+      scientificReference: lightingMap['scientificReference'] as String,
     ),
   );
 }

@@ -7,6 +7,15 @@ import {
 import { CelestialBodyGateway } from '../../../domain/models/celestial-body/gateway/celestial-body-gateway';
 import { CelestialBodyMapper } from '../../helpers/mappers/celestial-body.mapper';
 
+const EARTH_SCIENTIFIC_REF =
+  'NASA Earth Observatory — Dispersión molecular de Rayleigh (N₂/O₂, λ⁻⁴)';
+const MARS_SCIENTIFIC_REF =
+  'NASA Mars Science Laboratory Curiosity — PIA19400 (Sol 956 Gale Crater Sunset)';
+const MOON_SCIENTIFIC_REF =
+  'NASA Apollo 11–17 Surface Photography & Lunar Reconnaissance Orbiter (LRO) — Exosfera en vacío (ρ = 0)';
+const TITAN_SCIENTIFIC_REF =
+  'ESA/NASA/JPL-Caltech Cassini-Huygens DISR Surface Images (14 enero 2005)';
+
 const RAW_CELESTIAL_BODIES: readonly unknown[] = [
   {
     id: 'earth',
@@ -28,8 +37,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
       landingPadTrimHex: '#C7A336',
     },
     skyOpticalProfile: {
-      scientificReference:
-        'NASA Earth Observatory — Dispersión molecular de Rayleigh (N₂/O₂, λ⁻⁴)',
+      scientificReference: EARTH_SCIENTIFIC_REF,
       descriptionEs:
         'Dispersión molecular de Rayleigh: cielo azul diurno que se torna naranja intenso y carmesí en el horizonte cuando la luz solar atraviesa mayor espesor atmosférico.',
       shadowHardness: 0.65,
@@ -37,7 +45,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
       keyframes: [
         {
           elevationDeg: -10,
-          zenithColorHex: '#020308',
+          zenithColorHex: '#02120E',
           horizonColorHex: '#090D16',
           sunHaloColorHex: '#1F120E',
           sunDiscColorHex: '#7A2810',
@@ -45,7 +53,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
         },
         {
           elevationDeg: 0,
-          zenithColorHex: '#1B294A',
+          zenithColorHex: '#165A66',
           horizonColorHex: '#D92B04',
           sunHaloColorHex: '#FF6B1A',
           sunDiscColorHex: '#FF9E44',
@@ -53,7 +61,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
         },
         {
           elevationDeg: 12,
-          zenithColorHex: '#1F3F73',
+          zenithColorHex: '#1F4E78',
           horizonColorHex: '#FF5E1A',
           sunHaloColorHex: '#FF8C42',
           sunDiscColorHex: '#FFD27D',
@@ -64,18 +72,27 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
           zenithColorHex: '#1E5799',
           horizonColorHex: '#7DB9E8',
           sunHaloColorHex: '#FFF5D6',
-          sunDiscColorHex: '#FFFDF4',
+          sunDiscColorHex: '#FFF4E0',
           ambientLightIntensity: 0.78,
         },
         {
           elevationDeg: 90,
           zenithColorHex: '#16498C',
           horizonColorHex: '#8AC4F2',
-          sunHaloColorHex: '#FFFDF4',
-          sunDiscColorHex: '#FFFDF4',
+          sunHaloColorHex: '#FFF4E0',
+          sunDiscColorHex: '#FFF4E0',
           ambientLightIntensity: 0.9,
         },
       ],
+    },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFF4E0',
+      sunColorSunsetHex: '#FF7A2E',
+      ambientDayIntensity: 0.45,
+      twilightFadeDeg: 6,
+      shadowSoftness: 0.35,
+      scientificReference: EARTH_SCIENTIFIC_REF,
     },
   },
   {
@@ -98,8 +115,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
       landingPadTrimHex: '#C7A336',
     },
     skyOpticalProfile: {
-      scientificReference:
-        'NASA Mars Science Laboratory Curiosity — PIA19400 (Sol 956 Gale Crater Sunset)',
+      scientificReference: MARS_SCIENTIFIC_REF,
       descriptionEs:
         'El polvo fino de óxido de hierro en suspensión tiñe el cielo de ocre cálido de día, pero al atardecer dispersa la luz azul hacia adelante creando un característico halo azul frío alrededor del Sol.',
       shadowHardness: 0.55,
@@ -109,7 +125,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
           elevationDeg: -10,
           zenithColorHex: '#1A110E',
           horizonColorHex: '#2A1B16',
-          sunHaloColorHex: '#253545',
+          sunHaloColorHex: '#2A3E52',
           sunDiscColorHex: '#6C93B8',
           ambientLightIntensity: 0.06,
         },
@@ -147,6 +163,15 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
         },
       ],
     },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFE9D2',
+      sunColorSunsetHex: '#6C93B8',
+      ambientDayIntensity: 0.4,
+      twilightFadeDeg: 8,
+      shadowSoftness: 0.45,
+      scientificReference: MARS_SCIENTIFIC_REF,
+    },
   },
   {
     id: 'moon',
@@ -168,8 +193,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
       landingPadTrimHex: '#C7A336',
     },
     skyOpticalProfile: {
-      scientificReference:
-        'NASA Apollo 11–17 Surface Photography & Lunar Reconnaissance Orbiter (LRO) — Exosfera en vacío (ρ = 0)',
+      scientificReference: MOON_SCIENTIFIC_REF,
       descriptionEs:
         'Sin atmósfera que disperse los fotones solares, el cielo permanece negro absoluto a cualquier hora solar y las sombras proyectadas sobre el regolito son completamente negras y de borde duro.',
       shadowHardness: 1.0,
@@ -188,7 +212,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
           zenithColorHex: '#000000',
           horizonColorHex: '#000000',
           sunHaloColorHex: '#000000',
-          sunDiscColorHex: '#FFFDF8',
+          sunDiscColorHex: '#FFF8EE',
           ambientLightIntensity: 0.0,
         },
         {
@@ -196,10 +220,19 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
           zenithColorHex: '#000000',
           horizonColorHex: '#000000',
           sunHaloColorHex: '#000000',
-          sunDiscColorHex: '#FFFDF8',
+          sunDiscColorHex: '#FFF8EE',
           ambientLightIntensity: 0.0,
         },
       ],
+    },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFF8EE',
+      sunColorSunsetHex: '#FFF8EE',
+      ambientDayIntensity: 0.0,
+      twilightFadeDeg: 0,
+      shadowSoftness: 0.0,
+      scientificReference: MOON_SCIENTIFIC_REF,
     },
   },
   {
@@ -222,8 +255,7 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
       landingPadTrimHex: '#C7A336',
     },
     skyOpticalProfile: {
-      scientificReference:
-        'ESA/NASA/JPL-Caltech Cassini-Huygens DISR Surface Images (14 enero 2005)',
+      scientificReference: TITAN_SCIENTIFIC_REF,
       descriptionEs:
         'Una densa atmósfera de nitrógeno y aerosoles orgánicos (tolinas) a 5,3 kg/m³ envuelve la superficie en una bruma ámbar anaranjada con iluminación difusa y sombras casi imperceptibles.',
       shadowHardness: 0.15,
@@ -262,6 +294,15 @@ const RAW_CELESTIAL_BODIES: readonly unknown[] = [
           ambientLightIntensity: 0.48,
         },
       ],
+    },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#E8B070',
+      sunColorSunsetHex: '#B5651D',
+      ambientDayIntensity: 0.7,
+      twilightFadeDeg: 10,
+      shadowSoftness: 0.9,
+      scientificReference: TITAN_SCIENTIFIC_REF,
     },
   },
 ];

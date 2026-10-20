@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/models/celestial_body/celestial_body.dart';
+import '../../domain/models/scene/visual_quality.dart';
+import 'quality_toggle.dart';
 
 class WorldSelectorSheet extends StatelessWidget {
   static const Color weincodeIndigoDeep = Color(0xFF18084D);
@@ -10,11 +12,15 @@ class WorldSelectorSheet extends StatelessWidget {
 
   final List<CelestialBody> worlds;
   final ValueChanged<CelestialBody> onSelectWorld;
+  final VisualQuality visualQuality;
+  final ValueChanged<VisualQuality>? onQualityChanged;
 
   const WorldSelectorSheet({
     super.key,
     required this.worlds,
     required this.onSelectWorld,
+    this.visualQuality = VisualQuality.high,
+    this.onQualityChanged,
   });
 
   String _formatDecimalEs(double value, {int decimals = 2}) {
@@ -59,6 +65,13 @@ class WorldSelectorSheet extends StatelessWidget {
                   style: TextStyle(
                     color: weincodeSoftLavender,
                     fontSize: 13,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Center(
+                  child: QualityToggle(
+                    quality: visualQuality,
+                    onQualityChanged: onQualityChanged ?? (_) {},
                   ),
                 ),
                 const SizedBox(height: 16),

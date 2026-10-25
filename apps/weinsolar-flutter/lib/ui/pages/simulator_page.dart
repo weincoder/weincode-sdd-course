@@ -3,8 +3,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 
 import '../../config/providers/simulation_provider.dart';
+import '../../domain/models/scene/camera_mode.dart';
 import '../widgets/mission_outcome_overlay.dart';
-import '../widgets/planetary_scene_3d_painter.dart';
+import '../widgets/scene3d/planetary_scene_view.dart';
+import '../widgets/scene3d/scene_descriptor_mapper.dart';
 import '../widgets/solar_hour_control_panel.dart';
 import '../widgets/thruster_control_button.dart';
 import '../widgets/weincode_cockpit_hud.dart';
@@ -17,10 +19,12 @@ class SimulatorPage extends StatefulWidget {
   static const Color weincodePureWhite = Color(0xFFFFFFFF);
 
   final SimulationProvider provider;
+  final Widget Function(SceneDescriptor descriptor)? sceneBuilder;
 
   const SimulatorPage({
     super.key,
     required this.provider,
+    this.sceneBuilder,
   });
 
   @override
@@ -32,6 +36,7 @@ class _SimulatorPageState extends State<SimulatorPage>
   late final Ticker _ticker;
   final FocusNode _keyboardFocusNode = FocusNode();
   Duration? _lastElapsed;
+  bool _areControlsHidden = false;
 
   @override
   void initState() {
@@ -85,6 +90,19 @@ class _SimulatorPageState extends State<SimulatorPage>
 
   KeyEventResult _handleKeyEvent(FocusNode node, KeyEvent event) {
     final key = event.logicalKey;
+
+    if (widget.provider.cameraMode == CameraMode.orbit &&
+        (event is KeyDownEvent || event is KeyRepeatEvent)) {
+      if (key == LogicalKeyboardKey.arrowLeft) {
+        widget.provider.rotateCameraByDelta(-5.0);
+        return KeyEventResult.handled;
+      }
+      if (key == LogicalKeyboardKey.arrowRight) {
+        widget.provider.rotateCameraByDelta(5.0);
+        return KeyEventResult.handled;
+      }
+    }
+
     final isThrusterKey = key == LogicalKeyboardKey.space ||
         key == LogicalKeyboardKey.arrowUp;
     if (!isThrusterKey) {
@@ -99,6 +117,12 @@ class _SimulatorPageState extends State<SimulatorPage>
       return KeyEventResult.handled;
     }
     return KeyEventResult.ignored;
+  }
+
+  void _toggleControlsVisibility() {
+    setState(() {
+      _areControlsHidden = !_areControlsHidden;
+    });
   }
 
   @override
@@ -125,7 +149,12 @@ class _SimulatorPageState extends State<SimulatorPage>
               if (widget.provider.isWorldSelectionActive) {
                 return WorldSelectorSheet(
                   worlds: widget.provider.worlds,
+                  visualQuality: widget.provider.visualQuality,
+                  onQualityChanged: widget.provider.setVisualQuality,
                   onSelectWorld: (world) {
+                    setState(() {
+                      _areControlsHidden = false;
+                    });
                     widget.provider.selectWorld(world);
                     _keyboardFocusNode.requestFocus();
                   },
@@ -136,29 +165,20 @@ class _SimulatorPageState extends State<SimulatorPage>
               final landerState = widget.provider.landerState!;
               final attempt = widget.provider.missionAttempt!;
               final solarHourState = widget.provider.solarHourState;
+              final descriptor = widget.provider.sceneDescriptor!;
 
               return Stack(
                 fit: StackFit.expand,
                 children: [
-                  // 3D Planetary Scene Canvas (FR-027..FR-030, isolated from Weincode palette per FR-021)
-                  GestureDetector(
-                    key: const Key('planetary-scene-3d-canvas'),
-                    onHorizontalDragUpdate: widget.provider.isSolarHourUnlocked
-                        ? (details) {
-                            widget.provider.rotateCameraByDelta(
-                              details.delta.dx * 0.45,
-                            );
-                          }
-                        : null,
-                    child: CustomPaint(
-                      painter: PlanetaryScene3dPainter(
-                        world: world,
-                        landerState: landerState,
-                        solarHourState: solarHourState,
-                      ),
-                      size: Size.infinite,
+                  // 3D Planetary Scene Viewport (isolated from Weincode palette per FR-021 / RN-10)
+                  if (widget.sceneBuilder != null)
+                    widget.sceneBuilder!(descriptor)
+                  else
+                    PlanetarySceneView(
+                      key: const Key('planetary-scene-3d-canvas'),
+                      descriptor: descriptor,
+                      onOrbitAzimuthDelta: widget.provider.rotateCameraByDelta,
                     ),
-                  ),
 
                   // Top Weincode Cockpit HUD Overlay (FR-019..FR-021, FR-026)
                   Positioned(
@@ -174,6 +194,10 @@ class _SimulatorPageState extends State<SimulatorPage>
                           isAutopilotActive: widget.provider.isAutopilotActive,
                           onToggleAutoLand: widget.provider.toggleAutoLand,
                           onResetInFlight: widget.provider.resetInFlight,
+                          visualQuality: widget.provider.visualQuality,
+                          onQualityChanged: widget.provider.setVisualQuality,
+                          areControlsHidden: _areControlsHidden,
+                          onToggleControlsVisibility: _toggleControlsVisibility,
                         ),
                       ),
                     ),
@@ -196,12 +220,11 @@ class _SimulatorPageState extends State<SimulatorPage>
                                 solarHourState: solarHourState,
                                 onElevationChanged:
                                     widget.provider.updateSolarElevation,
-                                onAzimuthChanged:
-                                    widget.provider.updateCameraAzimuth,
                               ),
-                              const SizedBox(height: 10),
+                              if (!_areControlsHidden)
+                                const SizedBox(height: 10),
                             ],
-                            if ( widget.provider.isDescending)
+                            if (widget.provider.isDescending)
                               ThrusterControlButton(
                                 isThrusterActive: landerState.isThrusterActive,
                                 isOutOfFuel: landerState.isOutOfFuel,
@@ -209,7 +232,7 @@ class _SimulatorPageState extends State<SimulatorPage>
                                 onThrusterChanged:
                                     widget.provider.setThrusterActive,
                               )
-                            else
+                            else if (!_areControlsHidden)
                               MissionOutcomeOverlay(
                                 world: world,
                                 attempt: attempt,

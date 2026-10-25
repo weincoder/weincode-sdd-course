@@ -40,6 +40,15 @@ const MOCK_BODIES: CelestialBody[] = [
         },
       ],
     },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFF4E0',
+      sunColorSunsetHex: '#FF7A2E',
+      ambientDayIntensity: 0.45,
+      twilightFadeDeg: 6,
+      shadowSoftness: 0.35,
+      scientificReference: 'NASA Earth Observatory — Dispersión molecular de Rayleigh',
+    },
   },
   {
     id: 'mars',
@@ -75,6 +84,15 @@ const MOCK_BODIES: CelestialBody[] = [
           ambientLightIntensity: 0.6,
         },
       ],
+    },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFE9D2',
+      sunColorSunsetHex: '#6C93B8',
+      ambientDayIntensity: 0.4,
+      twilightFadeDeg: 8,
+      shadowSoftness: 0.45,
+      scientificReference: 'NASA Mars Science Laboratory Curiosity — PIA19400 (Gale Crater sunset)',
     },
   },
   {
@@ -112,6 +130,15 @@ const MOCK_BODIES: CelestialBody[] = [
         },
       ],
     },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#FFF8EE',
+      sunColorSunsetHex: '#FFF8EE',
+      ambientDayIntensity: 0.0,
+      twilightFadeDeg: 0,
+      shadowSoftness: 0.0,
+      scientificReference: 'NASA Apollo 11–17 Surface Photography & LRO — Vacío exosférico',
+    },
   },
   {
     id: 'titan',
@@ -147,6 +174,15 @@ const MOCK_BODIES: CelestialBody[] = [
           ambientLightIntensity: 0.45,
         },
       ],
+    },
+    lightingProfile: {
+      sunAzimuthDeg: 250,
+      sunColorDayHex: '#E8B070',
+      sunColorSunsetHex: '#B5651D',
+      ambientDayIntensity: 0.7,
+      twilightFadeDeg: 10,
+      shadowSoftness: 0.9,
+      scientificReference: 'ESA/NASA/JPL-Caltech Huygens DISR Surface Images (14 enero 2005)',
     },
   },
 ];

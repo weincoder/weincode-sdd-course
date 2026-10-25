@@ -10,20 +10,32 @@ import {
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CelestialBody } from '../../../domain/models/celestial-body/celestial-body';
+import { CameraMode } from '../../../domain/models/scene/camera-mode';
+import { SceneLightingState } from '../../../domain/models/scene/scene-lighting-state';
+import { TerrainLayout } from '../../../domain/models/scene/terrain-layout';
+import { VisualQuality } from '../../../domain/models/scene/visual-quality';
 import { LanderState } from '../../../domain/models/simulation/lander-state';
 import { MissionAttempt } from '../../../domain/models/simulation/mission-attempt';
 import {
   INITIAL_SOLAR_ELEVATION_DEG,
   SolarHourState,
 } from '../../../domain/models/simulation/solar-hour-state';
+import { ComputeSceneLightingUseCase } from '../../../domain/usecase/compute-scene-lighting.use-case';
 import { EvaluateSolarHourUseCase } from '../../../domain/usecase/evaluate-solar-hour.use-case';
+import { GenerateTerrainLayoutUseCase } from '../../../domain/usecase/generate-terrain-layout.use-case';
 import { GetCelestialBodiesUseCase } from '../../../domain/usecase/get-celestial-bodies.use-case';
+import { ResolveCameraModeUseCase } from '../../../domain/usecase/resolve-camera-mode.use-case';
 import { SimulateDescentStepUseCase } from '../../../domain/usecase/simulate-descent-step.use-case';
 import { ThrusterButtonComponent } from '../../ds/atoms/thruster-button/thruster-button.component';
 import { MissionResultBannerComponent } from '../../ds/molecules/mission-result-banner/mission-result-banner.component';
+import { QualityToggleComponent } from '../../ds/molecules/quality-toggle/quality-toggle.component';
 import { SolarHourSliderComponent } from '../../ds/molecules/solar-hour-slider/solar-hour-slider.component';
 import { WorldCardComponent } from '../../ds/molecules/world-card/world-card.component';
 import { PlanetaryScene3dComponent } from '../../ds/organisms/planetary-scene-3d/planetary-scene-3d.component';
+import {
+  SceneDescriptor,
+  SceneDescriptorMapper,
+} from '../../ds/organisms/planetary-scene-3d/scene-descriptor.mapper';
 import { WeincodeCockpitHudComponent } from '../../ds/organisms/weincode-cockpit-hud/weincode-cockpit-hud.component';
 import { SimulatorShellComponent } from '../../ds/templates/simulator-shell/simulator-shell.component';
 
@@ -31,6 +43,7 @@ import { SimulatorShellComponent } from '../../ds/templates/simulator-shell/simu
   selector: 'app-simulator',
   imports: [
     WorldCardComponent,
+    QualityToggleComponent,
     ThrusterButtonComponent,
     MissionResultBannerComponent,
     SolarHourSliderComponent,
@@ -57,7 +70,8 @@ import { SimulatorShellComponent } from '../../ds/templates/simulator-shell/simu
         max-width: 44rem;
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        align-items: center;
+        gap: 0.75rem;
       }
       .selector-screen__title {
         font-size: 2rem;
@@ -90,52 +104,53 @@ import { SimulatorShellComponent } from '../../ds/templates/simulator-shell/simu
     @if (selectedWorld(); as world) {
       @if (landerState(); as currentLander) {
         @if (solarHourState(); as currentSolar) {
-          <app-simulator-shell>
-            <app-planetary-scene-3d
-              slot="scene"
-              [world]="world"
-              [landerState]="currentLander"
-              [solarHourState]="currentSolar"
-              (cameraAzimuthChanged)="updateCameraAzimuth($event)"
-            />
+          @if (sceneDescriptor(); as currentDescriptor) {
+            <app-simulator-shell>
+              <app-planetary-scene-3d
+                slot="scene"
+                [descriptor]="currentDescriptor"
+                (cameraAzimuthChanged)="updateCameraAzimuth($event)"
+              />
 
-            <app-weincode-cockpit-hud
-              slot="hud-top"
-              [world]="world"
-              [landerState]="currentLander"
-              [isAutopilotActive]="isAutopilotActive()"
-              (autoLandRequested)="toggleAutoLand()"
-              (resetRequested)="resetInFlight()"
-            />
+              <app-weincode-cockpit-hud
+                slot="hud-top"
+                [world]="world"
+                [landerState]="currentLander"
+                [isAutopilotActive]="isAutopilotActive()"
+                [visualQuality]="visualQuality()"
+                (visualQualityChanged)="setVisualQuality($event)"
+                (autoLandRequested)="toggleAutoLand()"
+                (resetRequested)="resetInFlight()"
+              />
 
-            <div slot="hud-bottom" class="bottom-controls">
-              @if (missionAttempt(); as attempt) {
-                @if (attempt.outcome === 'inProgress') {
-                  <app-thruster-button
-                    [isActive]="currentLander.isThrusterActive"
-                    [isOutOfFuel]="currentLander.fuelPercentage <= 0"
-                    (thrusterChanged)="setThruster($event)"
-                  />
-                } @else {
-                  <app-mission-result-banner
-                    [world]="world"
-                    [attempt]="attempt"
-                    (retryRequested)="retryMission()"
-                    (changeWorldRequested)="changeWorld()"
+              <div slot="hud-bottom" class="bottom-controls">
+                @if (missionAttempt(); as attempt) {
+                  @if (attempt.outcome === 'inProgress') {
+                    <app-thruster-button
+                      [isActive]="currentLander.isThrusterActive"
+                      [isOutOfFuel]="currentLander.fuelPercentage <= 0"
+                      (thrusterChanged)="setThruster($event)"
+                    />
+                  } @else {
+                    <app-mission-result-banner
+                      [world]="world"
+                      [attempt]="attempt"
+                      (retryRequested)="retryMission()"
+                      (changeWorldRequested)="changeWorld()"
+                    />
+                  }
+                }
+
+                @if (isSolarHourUnlocked()) {
+                  <app-solar-hour-slider
+                    [solarElevationDeg]="currentSolar.solarElevationDeg"
+                    [cameraAzimuthDeg]="cameraAzimuthDeg()"
+                    (solarElevationChanged)="updateSolarElevation($event)"
                   />
                 }
-              }
-
-              @if (isSolarHourUnlocked()) {
-                <app-solar-hour-slider
-                  [solarElevationDeg]="currentSolar.solarElevationDeg"
-                  [cameraAzimuthDeg]="currentSolar.cameraAzimuthDeg"
-                  (solarElevationChanged)="updateSolarElevation($event)"
-                  (cameraAzimuthChanged)="updateCameraAzimuth($event)"
-                />
-              }
-            </div>
-          </app-simulator-shell>
+              </div>
+            </app-simulator-shell>
+          }
         }
       }
     } @else {
@@ -147,6 +162,10 @@ import { SimulatorShellComponent } from '../../ds/templates/simulator-shell/simu
             reales. Aterriza a <strong>≤ 2,0 m/s</strong> para desbloquear la observación
             crepuscular <strong>Hora Solar</strong>.
           </p>
+          <app-quality-toggle
+            [value]="visualQuality()"
+            (valueChange)="setVisualQuality($event)"
+          />
         </header>
 
         <section class="selector-screen__grid">
@@ -162,6 +181,9 @@ export class SimulatorComponent implements OnInit {
   private readonly getCelestialBodies = inject(GetCelestialBodiesUseCase);
   private readonly simulateDescentStep = inject(SimulateDescentStepUseCase);
   private readonly evaluateSolarHour = inject(EvaluateSolarHourUseCase);
+  private readonly computeSceneLighting = inject(ComputeSceneLightingUseCase);
+  private readonly generateTerrainLayout = inject(GenerateTerrainLayoutUseCase);
+  private readonly resolveCameraMode = inject(ResolveCameraModeUseCase);
   private readonly destroyRef = inject(DestroyRef);
 
   readonly worlds = toSignal(this.getCelestialBodies.getAll(), { initialValue: [] });
@@ -170,11 +192,14 @@ export class SimulatorComponent implements OnInit {
   readonly missionAttempt = signal<MissionAttempt | null>(null);
   readonly solarElevationDeg = signal<number>(INITIAL_SOLAR_ELEVATION_DEG);
   readonly cameraAzimuthDeg = signal<number>(0.0);
+  readonly visualQuality = signal<VisualQuality>('high');
   readonly isWindowPaused = signal<boolean>(false);
   readonly isAutopilotActive = signal<boolean>(false);
 
   readonly isSolarHourUnlocked = computed(
-    () => this.missionAttempt()?.outcome === 'success' && Boolean(this.missionAttempt()?.isSolarHourUnlocked),
+    () =>
+      this.missionAttempt()?.outcome === 'success' &&
+      Boolean(this.missionAttempt()?.isSolarHourUnlocked),
   );
 
   readonly solarHourState = computed<SolarHourState | null>(() => {
@@ -188,6 +213,53 @@ export class SimulatorComponent implements OnInit {
       attempt,
       solarElevationDeg: this.solarElevationDeg(),
       cameraAzimuthDeg: this.cameraAzimuthDeg(),
+    });
+  });
+
+  readonly sceneLighting = computed<SceneLightingState | null>(() => {
+    const world = this.selectedWorld();
+    const solar = this.solarHourState();
+    if (!world || !solar) {
+      return null;
+    }
+    const effectiveElevation = solar.isUnlocked
+      ? this.solarElevationDeg()
+      : INITIAL_SOLAR_ELEVATION_DEG;
+    return this.computeSceneLighting.execute(world, effectiveElevation);
+  });
+
+  readonly terrainLayout = computed<TerrainLayout | null>(() => {
+    const world = this.selectedWorld();
+    if (!world) {
+      return null;
+    }
+    return this.generateTerrainLayout.execute(world, this.visualQuality());
+  });
+
+  readonly cameraMode = computed<CameraMode>(() => {
+    const solar = this.solarHourState();
+    if (!solar) {
+      return 'lateralFollow';
+    }
+    return this.resolveCameraMode.execute(solar);
+  });
+
+  readonly sceneDescriptor = computed<SceneDescriptor | null>(() => {
+    const world = this.selectedWorld();
+    const currentLander = this.landerState();
+    const lighting = this.sceneLighting();
+    const terrain = this.terrainLayout();
+    if (!world || !currentLander || !lighting || !terrain) {
+      return null;
+    }
+    return SceneDescriptorMapper.from({
+      world,
+      landerState: currentLander,
+      lighting,
+      terrain,
+      cameraMode: this.cameraMode(),
+      cameraAzimuthDeg: this.cameraAzimuthDeg(),
+      quality: this.visualQuality(),
     });
   });
 
@@ -228,6 +300,10 @@ export class SimulatorComponent implements OnInit {
   selectWorld(world: CelestialBody): void {
     this.selectedWorld.set(world);
     this.initializeMissionForWorld(world);
+  }
+
+  setVisualQuality(quality: VisualQuality): void {
+    this.visualQuality.set(quality);
   }
 
   resetInFlight(): void {
@@ -305,10 +381,11 @@ export class SimulatorComponent implements OnInit {
   }
 
   updateCameraAzimuth(azimuthDeg: number): void {
-    if (!this.isSolarHourUnlocked()) {
+    if (this.cameraMode() !== 'orbit') {
       return;
     }
-    this.cameraAzimuthDeg.set(azimuthDeg);
+    const normalized = ((azimuthDeg % 360) + 360) % 360;
+    this.cameraAzimuthDeg.set(normalized);
   }
 
   advanceSimulationStep(realDeltaSeconds: number): void {
@@ -346,6 +423,14 @@ export class SimulatorComponent implements OnInit {
         event.preventDefault();
         this.setThruster(true);
       }
+      return;
+    }
+    if (event.code === 'ArrowLeft' && this.cameraMode() === 'orbit') {
+      event.preventDefault();
+      this.updateCameraAzimuth(this.cameraAzimuthDeg() - 5);
+    } else if (event.code === 'ArrowRight' && this.cameraMode() === 'orbit') {
+      event.preventDefault();
+      this.updateCameraAzimuth(this.cameraAzimuthDeg() + 5);
     }
   }
 

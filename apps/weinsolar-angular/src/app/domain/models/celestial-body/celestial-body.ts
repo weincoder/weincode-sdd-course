@@ -27,6 +27,16 @@ export interface SkyOpticalProfile {
   readonly keyframes: readonly SkyOpticalKeyframe[];
 }
 
+export interface LightingProfile {
+  readonly sunAzimuthDeg: number;
+  readonly sunColorDayHex: string;
+  readonly sunColorSunsetHex: string;
+  readonly ambientDayIntensity: number;
+  readonly twilightFadeDeg: number;
+  readonly shadowSoftness: number;
+  readonly scientificReference: string;
+}
+
 export interface CelestialBody {
   readonly id: CelestialBodyId;
   readonly nameEs: string;
@@ -39,4 +49,5 @@ export interface CelestialBody {
   readonly initialFuel: number;
   readonly terrainTheme: TerrainTheme;
   readonly skyOpticalProfile: SkyOpticalProfile;
+  readonly lightingProfile: LightingProfile;
 }

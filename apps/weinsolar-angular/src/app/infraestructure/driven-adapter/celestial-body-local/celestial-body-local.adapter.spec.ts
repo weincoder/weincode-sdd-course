@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { firstValueFrom } from 'rxjs';
 import { CelestialBodyLocalAdapter } from './celestial-body-local.adapter';
 
-describe('CelestialBodyLocalAdapter (RN-01, FR-001, FR-002, FR-016, FR-024, SC-005)', () => {
+describe('CelestialBodyLocalAdapter (T018 — RN-01, RN-14, FR-001, FR-002, FR-016, FR-024, SC-005)', () => {
   let adapter: CelestialBodyLocalAdapter;
 
   beforeEach(() => {
@@ -46,5 +46,21 @@ describe('CelestialBodyLocalAdapter (RN-01, FR-001, FR-002, FR-016, FR-024, SC-0
     const titan = await firstValueFrom(adapter.getById('titan'));
     expect(titan.nameEs).toBe('Titán');
     expect(titan.timeScale).toBe(4);
+  });
+
+  it('should expose lightingProfile on all 4 worlds with Moon ambientDayIntensity === 0, twilightFadeDeg === 0, and shared scientificReference (RN-14)', async () => {
+    const worlds = await firstValueFrom(adapter.getAll());
+    for (const world of worlds) {
+      expect(world.lightingProfile).toBeDefined();
+      expect(world.lightingProfile.sunAzimuthDeg).toBe(250);
+      expect(world.lightingProfile.scientificReference).toBe(
+        world.skyOpticalProfile.scientificReference,
+      );
+    }
+
+    const moon = worlds.find((w) => w.id === 'moon')!;
+    expect(moon.lightingProfile.ambientDayIntensity).toBe(0);
+    expect(moon.lightingProfile.twilightFadeDeg).toBe(0);
+    expect(moon.lightingProfile.shadowSoftness).toBe(0);
   });
 });

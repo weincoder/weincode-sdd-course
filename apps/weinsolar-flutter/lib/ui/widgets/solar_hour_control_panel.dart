@@ -12,14 +12,14 @@ class SolarHourControlPanel extends StatelessWidget {
   final CelestialBody world;
   final SolarHourState solarHourState;
   final ValueChanged<double> onElevationChanged;
-  final ValueChanged<double> onAzimuthChanged;
+  final ValueChanged<double>? onAzimuthChanged;
 
   const SolarHourControlPanel({
     super.key,
     required this.world,
     required this.solarHourState,
     required this.onElevationChanged,
-    required this.onAzimuthChanged,
+    this.onAzimuthChanged,
   });
 
   @override
@@ -95,37 +95,6 @@ class SolarHourControlPanel extends StatelessWidget {
                       SolarHourState.maxElevationDeg,
                     ),
                     onChanged: onElevationChanged,
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const SizedBox(
-                width: 110,
-                child: Text(
-                  'Giro de cámara',
-                  style: TextStyle(
-                    color: weincodePureWhite,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-              Expanded(
-                child: SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    activeTrackColor: weincodeElectricViolet,
-                    inactiveTrackColor: weincodeSoftLavender,
-                    thumbColor: weincodePureWhite,
-                    overlayColor: weincodeElectricViolet,
-                  ),
-                  child: Slider(
-                    key: const Key('camera-azimuth-slider'),
-                    min: 0.0,
-                    max: 359.0,
-                    value: solarHourState.cameraAzimuthDeg.clamp(0.0, 359.0),
-                    onChanged: onAzimuthChanged,
                   ),
                 ),
               ),

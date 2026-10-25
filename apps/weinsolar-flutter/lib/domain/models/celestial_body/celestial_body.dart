@@ -41,6 +41,26 @@ class SkyOpticalProfile {
   });
 }
 
+class LightingProfile {
+  final double sunAzimuthDeg;
+  final String sunColorDayHex;
+  final String sunColorSunsetHex;
+  final double ambientDayIntensity;
+  final double twilightFadeDeg;
+  final double shadowSoftness;
+  final String scientificReference;
+
+  const LightingProfile({
+    required this.sunAzimuthDeg,
+    required this.sunColorDayHex,
+    required this.sunColorSunsetHex,
+    required this.ambientDayIntensity,
+    required this.twilightFadeDeg,
+    required this.shadowSoftness,
+    required this.scientificReference,
+  });
+}
+
 class CelestialBody {
   final CelestialBodyId id;
   final String nameEs;
@@ -53,6 +73,7 @@ class CelestialBody {
   final double initialFuel;
   final TerrainTheme terrainTheme;
   final SkyOpticalProfile skyOpticalProfile;
+  final LightingProfile lightingProfile;
 
   const CelestialBody({
     required this.id,
@@ -66,6 +87,7 @@ class CelestialBody {
     required this.initialFuel,
     required this.terrainTheme,
     required this.skyOpticalProfile,
+    required this.lightingProfile,
   });
 
   String get scientificReference => skyOpticalProfile.scientificReference;

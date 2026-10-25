@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/models/celestial_body/celestial_body.dart';
+import '../../domain/models/scene/visual_quality.dart';
 import '../../domain/models/simulation/lander_state.dart';
+import 'quality_toggle.dart';
 
 class WeincodeCockpitHud extends StatelessWidget {
   static const Color weincodeIndigoDeep = Color(0xFF18084D);
@@ -14,6 +16,10 @@ class WeincodeCockpitHud extends StatelessWidget {
   final VoidCallback onResetInFlight;
   final bool isAutopilotActive;
   final VoidCallback? onToggleAutoLand;
+  final VisualQuality visualQuality;
+  final ValueChanged<VisualQuality>? onQualityChanged;
+  final bool areControlsHidden;
+  final VoidCallback? onToggleControlsVisibility;
 
   const WeincodeCockpitHud({
     super.key,
@@ -22,6 +28,10 @@ class WeincodeCockpitHud extends StatelessWidget {
     required this.onResetInFlight,
     this.isAutopilotActive = false,
     this.onToggleAutoLand,
+    this.visualQuality = VisualQuality.high,
+    this.onQualityChanged,
+    this.areControlsHidden = false,
+    this.onToggleControlsVisibility,
   });
 
   String _formatEs(double value, {int decimals = 1}) {
@@ -38,7 +48,10 @@ class WeincodeCockpitHud extends StatelessWidget {
 
     return Container(
       key: const Key('weincode-cockpit-hud'),
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(
+        horizontal: 14,
+        vertical: areControlsHidden ? 6 : 10,
+      ),
       decoration: BoxDecoration(
         color: weincodeIndigoDeep,
         borderRadius: BorderRadius.circular(14),
@@ -89,6 +102,34 @@ class WeincodeCockpitHud extends StatelessWidget {
                       fontSize: 14,
                     ),
                   ),
+                  if (areControlsHidden) ...[
+                    const SizedBox(width: 10),
+                    Container(
+                      key: const Key('hud-compact-telemetry-pill'),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8,
+                        vertical: 3,
+                      ),
+                      decoration: BoxDecoration(
+                        color: velocitySafe
+                            ? weincodeIndigoDeep
+                            : weincodeElectricViolet,
+                        borderRadius: BorderRadius.circular(6),
+                        border: Border.all(
+                          color: weincodeSoftLavender,
+                          width: 1,
+                        ),
+                      ),
+                      child: Text(
+                        '${_formatEs(landerState.altitude)} m • ${_formatEs(landerState.verticalVelocity)} m/s',
+                        style: const TextStyle(
+                          color: weincodePureWhite,
+                          fontSize: 11,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ],
                 ],
               ),
               Wrap(
@@ -96,13 +137,14 @@ class WeincodeCockpitHud extends StatelessWidget {
                 spacing: 8,
                 runSpacing: 6,
                 children: [
-                  Text(
-                    'Umbral: ≤ 2,0 m/s • Techo: ${world.ceilingAltitude.toInt()} m',
-                    style: const TextStyle(
-                      color: weincodeSoftLavender,
-                      fontSize: 11,
+                  if (!areControlsHidden)
+                    Text(
+                      'Umbral: ≤ 2,0 m/s • Techo: ${world.ceilingAltitude.toInt()} m',
+                      style: const TextStyle(
+                        color: weincodeSoftLavender,
+                        fontSize: 11,
+                      ),
                     ),
-                  ),
                   if (landerState.status == LanderStatus.descending &&
                       onToggleAutoLand != null)
                     OutlinedButton(
@@ -156,43 +198,81 @@ class WeincodeCockpitHud extends StatelessWidget {
                       style: TextStyle(fontSize: 12),
                     ),
                   ),
+                  if (onToggleControlsVisibility != null)
+                    OutlinedButton(
+                      key: const Key('toggle-hud-controls-button'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: weincodePureWhite,
+                        backgroundColor: areControlsHidden
+                            ? weincodeElectricViolet
+                            : weincodeIndigoDeep,
+                        side: BorderSide(
+                          color: areControlsHidden
+                              ? weincodePureWhite
+                              : weincodeSoftLavender,
+                          width: 1.5,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
+                        minimumSize: const Size(0, 30),
+                      ),
+                      onPressed: onToggleControlsVisibility,
+                      child: Text(
+                        areControlsHidden
+                            ? 'Mostrar controles'
+                            : 'Ocultar controles',
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  if (!areControlsHidden)
+                    QualityToggle(
+                      quality: visualQuality,
+                      onQualityChanged: onQualityChanged ?? (_) {},
+                    ),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 10,
-            runSpacing: 8,
-            alignment: WrapAlignment.spaceBetween,
-            children: [
-              _TelemetryMetricChip(
-                metricKey: const Key('hud-altitude-value'),
-                label: 'ALTITUD',
-                value: '${_formatEs(landerState.altitude)} m',
-                sublabel: landerState.isNearCeiling
-                    ? 'ALERTA PROXIMIDAD TECHO'
-                    : 'Superficie a 0,0 m',
-                isHighlighted: landerState.isNearCeiling,
-              ),
-              _TelemetryMetricChip(
-                metricKey: const Key('hud-velocity-value'),
-                label: 'VELOCIDAD VERTICAL',
-                value: '${_formatEs(landerState.verticalVelocity)} m/s',
-                sublabel: velocityStatusText,
-                isHighlighted: !velocitySafe,
-              ),
-              _TelemetryMetricChip(
-                metricKey: const Key('hud-fuel-value'),
-                label: 'COMBUSTIBLE',
-                value: '${_formatEs(landerState.fuelPercentage)}%',
-                sublabel: landerState.isOutOfFuel
-                    ? 'Sin combustible'
-                    : 'Reserva activa',
-                isHighlighted: landerState.isOutOfFuel,
-              ),
-            ],
-          ),
+          if (!areControlsHidden) ...[
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 10,
+              runSpacing: 8,
+              alignment: WrapAlignment.spaceBetween,
+              children: [
+                _TelemetryMetricChip(
+                  metricKey: const Key('hud-altitude-value'),
+                  label: 'ALTITUD',
+                  value: '${_formatEs(landerState.altitude)} m',
+                  sublabel: landerState.isNearCeiling
+                      ? 'ALERTA PROXIMIDAD TECHO'
+                      : 'Superficie a 0,0 m',
+                  isHighlighted: landerState.isNearCeiling,
+                ),
+                _TelemetryMetricChip(
+                  metricKey: const Key('hud-velocity-value'),
+                  label: 'VELOCIDAD VERTICAL',
+                  value: '${_formatEs(landerState.verticalVelocity)} m/s',
+                  sublabel: velocityStatusText,
+                  isHighlighted: !velocitySafe,
+                ),
+                _TelemetryMetricChip(
+                  metricKey: const Key('hud-fuel-value'),
+                  label: 'COMBUSTIBLE',
+                  value: '${_formatEs(landerState.fuelPercentage)}%',
+                  sublabel: landerState.isOutOfFuel
+                      ? 'Sin combustible'
+                      : 'Reserva activa',
+                  isHighlighted: landerState.isOutOfFuel,
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );

@@ -44,6 +44,10 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         accent-color: #5236FF;
         cursor: pointer;
       }
+      .solar-panel__hint {
+        font-size: 0.75rem;
+        color: #A599FF;
+      }
     `,
   ],
   template: `
@@ -68,40 +72,20 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
         />
       </div>
 
-      <div class="solar-panel__control">
-        <label class="solar-panel__label" for="camera-azimuth-slider">
-          <span>Giro Horizontal de Cámara (360°)</span>
-          <span class="solar-panel__value">{{ cameraAzimuthDeg().toFixed(0) }}°</span>
-        </label>
-        <input
-          id="camera-azimuth-slider"
-          data-testid="camera-azimuth-slider"
-          class="solar-panel__range"
-          type="range"
-          min="0"
-          max="359"
-          step="1"
-          [value]="cameraAzimuthDeg()"
-          (input)="onAzimuthInput($event)"
-        />
+      <div class="solar-panel__hint">
+        Arrastra sobre la escena 3D o usa las flechas ◀ ▶ para girar 360° ({{ cameraAzimuthDeg().toFixed(0) }}°)
       </div>
     </section>
   `,
 })
 export class SolarHourSliderComponent {
   readonly solarElevationDeg = input.required<number>();
-  readonly cameraAzimuthDeg = input.required<number>();
+  readonly cameraAzimuthDeg = input<number>(0);
 
   readonly solarElevationChanged = output<number>();
-  readonly cameraAzimuthChanged = output<number>();
 
   onElevationInput(event: Event): void {
     const target = event.target as HTMLInputElement;
     this.solarElevationChanged.emit(Number(target.value));
-  }
-
-  onAzimuthInput(event: Event): void {
-    const target = event.target as HTMLInputElement;
-    this.cameraAzimuthChanged.emit(Number(target.value));
   }
 }

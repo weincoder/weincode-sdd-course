@@ -192,6 +192,7 @@ void main() {
         initialFuel: moonWithScale4.initialFuel,
         terrainTheme: moonWithScale4.terrainTheme,
         skyOpticalProfile: moonWithScale4.skyOpticalProfile,
+        lightingProfile: moonWithScale4.lightingProfile,
       );
 
       final resScaled = useCase.execute(

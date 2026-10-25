@@ -1,0 +1,4 @@
+enum VisualQuality {
+  high,
+  basic,
+}

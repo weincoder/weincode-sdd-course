@@ -1,6 +1,7 @@
 import {
   CelestialBody,
   CelestialBodyId,
+  LightingProfile,
   SkyOpticalKeyframe,
   SkyOpticalProfile,
   TerrainTheme,
@@ -11,6 +12,14 @@ export const CelestialBodyMapper = {
     const obj = raw as Record<string, unknown>;
     const rawTerrain = obj['terrainTheme'] as Record<string, unknown>;
     const rawSky = obj['skyOpticalProfile'] as Record<string, unknown>;
+    const rawLighting = obj['lightingProfile'] as Record<string, unknown> | undefined;
+
+    if (!rawLighting || typeof rawLighting !== 'object') {
+      throw new Error(
+        `Domain error: missing required lightingProfile for CelestialBody "${String(obj['id'] ?? 'unknown')}".`,
+      );
+    }
+
     const rawKeyframes = (rawSky['keyframes'] as unknown[]) ?? [];
 
     const terrainTheme: TerrainTheme = {
@@ -43,6 +52,16 @@ export const CelestialBodyMapper = {
       keyframes,
     };
 
+    const lightingProfile: LightingProfile = {
+      sunAzimuthDeg: Number(rawLighting['sunAzimuthDeg']),
+      sunColorDayHex: String(rawLighting['sunColorDayHex'] ?? ''),
+      sunColorSunsetHex: String(rawLighting['sunColorSunsetHex'] ?? ''),
+      ambientDayIntensity: Number(rawLighting['ambientDayIntensity']),
+      twilightFadeDeg: Number(rawLighting['twilightFadeDeg']),
+      shadowSoftness: Number(rawLighting['shadowSoftness']),
+      scientificReference: String(rawLighting['scientificReference'] ?? ''),
+    };
+
     return {
       id: String(obj['id']) as CelestialBodyId,
       nameEs: String(obj['nameEs'] ?? ''),
@@ -55,6 +74,7 @@ export const CelestialBodyMapper = {
       initialFuel: Number(obj['initialFuel']),
       terrainTheme,
       skyOpticalProfile,
+      lightingProfile,
     };
   },
 };

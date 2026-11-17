@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import '../../domain/models/celestial_body/celestial_body.dart';
 import '../../domain/models/simulation/solar_hour_state.dart';

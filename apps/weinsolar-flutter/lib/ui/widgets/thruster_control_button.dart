@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class ThrusterControlButton extends StatelessWidget {
   static const Color weincodeIndigoDeep = Color(0xFF18084D);
